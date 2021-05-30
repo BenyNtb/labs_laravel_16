@@ -1,6 +1,8 @@
 @extends('layouts.index')
 
 @section('content')
-    @include('template.intro-section')
-    @include('template.about-section')
+    @include('template.intro')
+    @include('template.about')
+    @include('template.testimonial')
+    @include('template.service')
 @endsection
