@@ -22,9 +22,9 @@
 
 <body>
 
-    @include('partials.frontend.preloader')
-    @include('partials.frontend.nav')
-    @include('partials.frontend.footer')
+    @include('partials.preloader')
+    @include('partials.nav')
+    @include('partials.footer')
     @yield('content')
 
 

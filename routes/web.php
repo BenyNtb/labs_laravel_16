@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/',[AllController::class,'home'])->name('home');
+Route::get('/services',[Allcontroller::class,'services'])->name('services');
+Route::get('/contact',[Allcontroller::class,'contact'])->name('contact');
+Route::get('/blog',[Allcontroller::class,'blog'])->name('blog');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

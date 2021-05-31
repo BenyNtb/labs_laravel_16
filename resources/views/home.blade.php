@@ -8,4 +8,5 @@
     @include('template.team')
     @include('template.promotion')
     @include('template.contact')
+    @include('partials.footer')
 @endsection
