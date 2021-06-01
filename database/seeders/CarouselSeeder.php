@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CarouselSeeder extends Seeder
 {
@@ -13,6 +14,19 @@ class CarouselSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('carousels')->insert([
+            [
+                'image' => '01.jpg',
+                'titre' => 'Get your freebie template now!',
+                'created_at' => now(),
+            ],
+            [
+                'image' => '02.jpg',
+                'titre' => 'Get your freebie template now!',
+                'created_at' => now(),
+
+            ],
+            
+        ]);
     }
 }

@@ -5,10 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Contact extends Model
 {
     use HasFactory;
-    public function icone() {
-        return $this->belongsTo(Icone::class);
-    }
 }

@@ -16,6 +16,8 @@ class CreateDiscoversTable extends Migration
         Schema::create('discovers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('titre');
+            $table->text('description');
         });
     }
 

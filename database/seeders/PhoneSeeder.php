@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class LogoSeeder extends Seeder
+class PhoneSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +13,6 @@ class LogoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('logos')->insert([
-            'logo' => 'logo.png',
-            'created_at' => now(),
-        ]);
+        //
     }
 }

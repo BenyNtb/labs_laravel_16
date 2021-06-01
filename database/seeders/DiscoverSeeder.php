@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DiscoverSeeder extends Seeder
 {
@@ -13,6 +14,13 @@ class DiscoverSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('discovers')->insert([
+            [
+                'titre' => 'GET IN THE LAB AND DISCOVER THE WORLD',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequat ante ac congue. Quisque porttitor porttitor tempus. Donec maximus ipsum non ornare vporttitor porttitorestibulum. Sed libero nibh, feugiat at enim id, bibendum sollicitudin arcu.',
+                'created_at' => now(),
+            ],
+            
+        ]);
     }
 }

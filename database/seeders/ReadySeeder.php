@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ReadySeeder extends Seeder
 {
@@ -13,6 +14,10 @@ class ReadySeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('readies')->insert([
+            'titre' => 'Are you ready to stand out?',
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est.',
+            'created_at' => now(),
+        ]);
     }
 }

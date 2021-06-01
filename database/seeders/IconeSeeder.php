@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PhotoSeeder extends Seeder
+class IconeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,54 +14,43 @@ class PhotoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('photos')->insert([
+        DB::table('icones')->insert([
             [
-                'src' => 'admin.png',
+                'class' => 'flaticon-023-flask',
                 'created_at' => now(),
             ],
             [
-                'src' => 'webmaster.png',
-
+                'class' => 'flaticon-011-compass',
                 'created_at' => now(),
             ],
             [
-                'src' => 'redacteur.png',
+                'class' => 'flaticon-037-idea',
                 'created_at' => now(),
             ],
             [
-                'src' => 'membre.png',
+                'class' => 'flaticon-039-vector',
                 'created_at' => now(),
             ],
             [
-                'src' => '1.jpg',
+                'class' => 'flaticon-036-brainstorming',
+                'created_at' => now(), 
+            ],
+            [
+                'class' => 'flaticon-026-search',
                 'created_at' => now(),
             ],
             [
-                'src' => '2.jpg',
+                'class' => 'flaticon-018-laptop-1',
                 'created_at' => now(),
             ],
             [
-                'src' => '3.jpg',
+                'class' => 'flaticon-043-sketch',
                 'created_at' => now(),
             ],
             [
-                'src' => '4.jpg',
+                'class' => 'flaticon-012-cube',
                 'created_at' => now(),
             ],
-            [
-                'src' => 'avatar/01.jpg',
-                'created_at' => now(),
-            ],
-            [
-                'src' => 'avatar/02.jpg',
-                'created_at' => now(),
-            ],
-            [
-                'src' => 'avatar/03.jpg',
-                'created_at' => now(),
-            ],
-
-
         ]);
     }
 }

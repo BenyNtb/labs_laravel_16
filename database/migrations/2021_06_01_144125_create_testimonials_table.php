@@ -15,6 +15,12 @@ class CreateTestimonialsTable extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->string('avis');
+
+            $table->unsignedBigInteger('photo_id');
+            $table->foreign('photo_id')->references('id')->on('photos');
+
             $table->timestamps();
         });
     }
