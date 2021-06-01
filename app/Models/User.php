@@ -17,9 +17,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'nom',
+        'prenom',
         'email',
         'password',
+        'role_id',
+        'genre_id',
+        'photo_id',
+        'poste_id',
     ];
 
     /**
@@ -40,4 +45,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class);
+    }
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+    public function poste()
+    {
+        return $this->belongsTo(Poste::class);
+    }
 }
