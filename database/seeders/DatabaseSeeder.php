@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ArticleBlog;
 use App\Models\Phone;
 use Illuminate\Database\Seeder;
 
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ArticleSeeder::class,
+            ArticleBlog::class,
             CarouselSeeder::class,
             ContactSeeder::class,
             DiscoverSeeder::class,
