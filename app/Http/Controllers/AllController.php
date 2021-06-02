@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Discover;
 use App\Models\Logo;
 use App\Models\Service;
@@ -21,7 +22,10 @@ class AllController extends Controller
         return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team'));
     }
     public function services(){
-        return view('services');
+        $services3 = Service::InRandomOrder()->limit(3)->get();
+        $articles = Article::all();
+        $services = Service::paginate(3)->fragment('servicePaginate');
+        return view('services', compact( 'services3', 'articles', 'services'));
     }
     public function contact(){
         return view('contact');
