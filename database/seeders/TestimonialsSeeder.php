@@ -22,13 +22,13 @@ class TestimonialsSeeder extends Seeder
                 'created_at' => now(),
             ],
             [
-                'nom' => 'Longoria Eva',
+                'nom' => 'Rihanna Fenty',
                 'avis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
                 'photo_id' => 6,
                 'created_at' => now(),
             ],
             [
-                'nom' => 'Roberts Julia',
+                'nom' => 'Beyonce Knowles',
                 'avis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
                 'photo_id' => 7,
                 'created_at' => now(),

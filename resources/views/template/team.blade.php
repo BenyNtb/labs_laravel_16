@@ -6,11 +6,14 @@
             <h2>Get in <span>the Lab</span> and  meet the team</h2>
         </div>
         <div class="row">
+            @foreach ($team as $team)
+                
+            @endforeach
             <!-- single member -->
             <div class="col-sm-4">
                 <div class="member">
-                    <img src="img/team/1.jpg" alt="">
-                    <h2>Christinne Williams</h2>
+                    <img src="{{asset("img/" . $team->photo->src)}}" alt="">
+                    <h2>{{$team->nom}}</h2>
                     <h3>Project Manager</h3>
                 </div>
             </div>

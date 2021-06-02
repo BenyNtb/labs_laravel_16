@@ -6,6 +6,7 @@
             <h2>Get in <span>the Lab</span> and  discover the world</h2>
         </div>
         <div class="row">
+            
             <!-- feature item -->
             <div class="col-md-4 col-sm-4 features">
                 <div class="icon-box light left">

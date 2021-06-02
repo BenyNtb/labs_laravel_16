@@ -31,6 +31,6 @@ class RoleSeeder extends Seeder
                 'roles' => "Membre",
                 'created_at' => now(),
             ],
-            ]);    
+        ]);
     }
 }

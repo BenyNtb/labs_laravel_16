@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             IconeSeeder::class,
             LogoSeeder::class,
             NewsletterSeeder::class,
-            PhoneSeeder::class,
             PhotoSeeder::class,
             PosteSeeder::class,
             ReadySeeder::class,
