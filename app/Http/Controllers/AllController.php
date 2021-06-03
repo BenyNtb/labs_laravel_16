@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\ArticleBlog;
 use App\Models\Discover;
 use App\Models\Logo;
 use App\Models\Service;
@@ -31,6 +32,8 @@ class AllController extends Controller
         return view('contact');
     }
     public function blog(){
-        return view('blog');
+        $blogs = ArticleBlog::all();
+        $blogs3 = Service::paginate(3)->fragment('servicePaginate');
+        return view('blog', compact('blogs', 'blogs3'));
     }
 }
