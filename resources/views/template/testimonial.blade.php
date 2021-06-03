@@ -20,7 +20,7 @@
                             </div>
                             <div class="client-name">
                                 <h2>{{$testimonial->nom}}</h2>
-                                <p>CEO Company</p>
+                                <p>{{$testimonial->poste->titre}}</p>
                             </div>
                         </div>
                     </div>

@@ -17,7 +17,7 @@ class CreateReadiesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('titre');
-            $table->string('description');
+            $table->string('description', 76);
         });
     }
 

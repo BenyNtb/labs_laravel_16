@@ -19,18 +19,21 @@ class TestimonialsSeeder extends Seeder
                 'nom' => 'Smith Michael',
                 'avis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
                 'photo_id' => 5,
+                'poste_id'=> 2,
                 'created_at' => now(),
             ],
             [
                 'nom' => 'Rihanna Fenty',
                 'avis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
                 'photo_id' => 6,
+                'poste_id'=> 1,
                 'created_at' => now(),
             ],
             [
                 'nom' => 'Beyonce Knowles',
                 'avis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
                 'photo_id' => 7,
+                'poste_id'=> 3,
                 'created_at' => now(),
             ],
         ]);

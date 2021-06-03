@@ -17,7 +17,7 @@ class CreateDiscoversTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('titre');
-            $table->text('description');
+            $table->text('description', 352);
         });
     }
 

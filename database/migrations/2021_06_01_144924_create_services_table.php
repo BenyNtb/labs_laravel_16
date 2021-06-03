@@ -17,7 +17,7 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('titre');
             $table->string('sous_titre');
-            $table->string('description');
+            $table->text('description', 121);
             $table->unsignedBigInteger('icone_id');
             $table->foreign('icone_id')->references('id')->on('icones');
             $table->timestamps();
