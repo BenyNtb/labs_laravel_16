@@ -40,4 +40,7 @@ class AllController extends Controller
         $tags = Tag::all();
         return view('blog', compact('blogs', 'blogs3', 'categories', 'tags'));
     }
+    public function blogpost(){
+        return view('blog-post');
+    }
 }
