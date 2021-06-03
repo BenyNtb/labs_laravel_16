@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\ArticleBlog;
+use App\Models\Categorie;
 use App\Models\Discover;
 use App\Models\Logo;
 use App\Models\Service;
+use App\Models\Tag;
 use App\Models\Team;
 use App\Models\Testimonials;
 use Illuminate\Http\Request;
@@ -34,6 +36,8 @@ class AllController extends Controller
     public function blog(){
         $blogs = ArticleBlog::all();
         $blogs3 = Service::paginate(3)->fragment('servicePaginate');
-        return view('blog', compact('blogs', 'blogs3'));
+        $categories = Categorie::all();
+        $tags = Tag::all();
+        return view('blog', compact('blogs', 'blogs3', 'categories', 'tags'));
     }
 }

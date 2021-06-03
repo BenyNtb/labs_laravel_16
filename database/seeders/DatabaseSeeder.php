@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PosteSeeder::class,
             ArticleBlogSeeder::class,
+            UserSeeder::class,
             CarouselSeeder::class,
             VideoSeeder::class,
             DiscoverSeeder::class,
@@ -33,7 +34,9 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             ArticleSeeder::class,
             NewsletterSeeder::class,
-            UserSeeder::class,
+            CategorieSeeder::class,
+            TagSeeder::class,
+            BlogTagSeeder::class,
         ]);
     }
 }

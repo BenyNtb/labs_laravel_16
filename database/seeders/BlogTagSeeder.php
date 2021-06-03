@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class BlogTagSeeder extends Seeder
 {
@@ -13,9 +14,9 @@ class BlogTagSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('blogtags')->insert([
+        DB::table('blog_tags')->insert([
             [
-                'blog_id' => 1,
+                'article_id' => 1,
                 'tag_id' => 1,
                 'created_at' => now(),
             ],
