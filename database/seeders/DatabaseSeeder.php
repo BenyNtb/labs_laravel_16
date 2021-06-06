@@ -16,27 +16,27 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            PhotoSeeder::class,
-            GenreSeeder::class,
             RoleSeeder::class,
+            GenreSeeder::class,
+            PhotoSeeder::class,
             PosteSeeder::class,
-            ArticleBlogSeeder::class,
             UserSeeder::class,
             CarouselSeeder::class,
             VideoSeeder::class,
-            DiscoverSeeder::class,
             LogoSeeder::class,
             TestimonialsSeeder::class,
             TeamSeeder::class,
             ReadySeeder::class,
             IconeSeeder::class,
             ServiceSeeder::class,
-            ContactSeeder::class,
+            DiscoverSeeder::class,
             ArticleSeeder::class,
-            NewsletterSeeder::class,
             CategorieSeeder::class,
+            BlogSeeder::class,
             TagSeeder::class,
             BlogTagSeeder::class,
+            ContactSeeder::class,
+            NewsletterSeeder::class,
         ]);
     }
 }

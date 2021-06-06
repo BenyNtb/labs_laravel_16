@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReadiesTable extends Migration
+class CreateVideosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateReadiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('readies', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('titre');
-            $table->string('description', 76);
+            $table->string('image');
+            $table->string('url');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateReadiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('readies');
+        Schema::dropIfExists('videos');
     }
 }

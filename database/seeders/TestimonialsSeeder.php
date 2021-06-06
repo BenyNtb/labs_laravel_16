@@ -36,6 +36,13 @@ class TestimonialsSeeder extends Seeder
                 'poste_id'=> 3,
                 'created_at' => now(),
             ],
+            [
+                'nom' => 'Bryson Tiller',
+                'avis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
+                'photo_id' => 5,
+                'poste_id'=> 4,
+                'created_at' => now(),
+            ],
         ]);
     }
 }

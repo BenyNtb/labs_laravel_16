@@ -15,7 +15,8 @@ class VideoSeeder extends Seeder
     public function run()
     {
         DB::table('videos')->insert([
-            'url' => 'video.jpg',
+            'image' => 'video.jpg',
+            'url' => 'https://www.youtube.com/watch?v=JgHfx2v9zOU',
             'created_at' => now(),
         ]);
     }

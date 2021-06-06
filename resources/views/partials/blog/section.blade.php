@@ -17,8 +17,19 @@
                     <div class="post-content">
                         <h2 class="post-title">{{$blog->titre}}</h2>
                         <div class="post-meta">
-                            <a href="">Loredana Papp</a>
-                            <a href="">Design, Inspiration</a>
+                            <a href="">{{$blog->categorie->nom}}</a>
+                            @if (count($blog->tags) <= 0)
+                                <span class="text-secondary">
+                                    0 tags pour cet article. 
+                                </span>    
+                            @else
+                                @foreach ($blog->tags as $tag)
+                                    <a href="">
+                                        <span class="text-primary">{{$tag->nom}}</span>
+                                    </a>
+                                @endforeach
+                            @endif
+                            
                             <a href="">2 Comments</a>
                         </div>
                         <p>{{$blog->description}}</p>

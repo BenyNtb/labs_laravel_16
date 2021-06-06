@@ -14,9 +14,9 @@ class BlogTagSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('blog_tags')->insert([
+        DB::table('blogtags')->insert([
             [
-                'article_id' => 1,
+                'blog_id' => 1,
                 'tag_id' => 1,
                 'created_at' => now(),
             ],

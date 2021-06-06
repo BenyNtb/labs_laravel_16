@@ -16,21 +16,52 @@ class TeamSeeder extends Seeder
     {
         DB::table('teams')->insert([
             [
+                'titre' => 'GET IN THE LAB AND MEET THE TEAM',
                 'nom' => 'Christinne Williams',
                 'photo_id' => 1,
-                'poste_id' => 1,
+                'poste_id' => 3,
                 'created_at' => now(),
             ],
             [
-                'nom' => 'Bertrand Boulanger',
+                'titre' => '',
+                'nom' => 'Blandine Croissant',
+                'photo_id' => 2,
+                'poste_id' => 2,
+                'created_at' => now(),
+            ],
+            [
+                'titre' => '',
+                'nom' => 'Jean DuJardin',
+                'photo_id' => 3,
+                'poste_id' => 4,
+                'created_at' => now(),
+            ],
+            [
+                'titre' => '',
+                'nom' => 'Suzie DuBois',
                 'photo_id' => 2,
                 'poste_id' => 3,
                 'created_at' => now(),
             ],
             [
-                'nom' => 'Paul Poisson',
+                'titre' => '',
+                'nom' => 'Paul Pierret',
                 'photo_id' => 3,
-                'poste_id' => 4,
+                'poste_id' => 2,
+                'created_at' => now(),
+            ],
+            [
+                'titre' => '',
+                'nom' => 'Sandrine Beranger',
+                'photo_id' => 4,
+                'poste_id' => 2,
+                'created_at' => now(),
+            ],
+            [
+                'titre' => '',
+                'nom' => 'Simon Boucher',
+                'photo_id' => 3,
+                'poste_id' => 1,
                 'created_at' => now(),
             ],
         ]);

@@ -3,34 +3,31 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="section-title">
-            <h2>Get in <span>the Lab</span> and  meet the team</h2>
+            <h2>{{$team[0]->titre}}</h2>
         </div>
         <div class="row">
-            @foreach ($team as $team)
-                
-            @endforeach
             <!-- single member -->
             <div class="col-sm-4">
                 <div class="member">
-                    <img src="{{asset("img/" . $team->photo->src)}}" alt="">
-                    <h2>{{$team->nom}}</h2>
-                    <h3>Project Manager</h3>
+                    <img src="img/team/1.jpg" alt="">
+                    <h2>{{$teamC[1]->nom}}</h2>
+                    <h3>{{$teamC[1]->poste->titre}}</h3>
                 </div>
             </div>
             <!-- single member -->
             <div class="col-sm-4">
                 <div class="member">
                     <img src="img/team/2.jpg" alt="">
-                    <h2>Christinne Williams</h2>
-                    <h3>Junior developer</h3>
+                    <h2>{{$centre[0]->nom}}</h2>
+                    <h3>{{$centre[0]->poste->titre}}</h3>
                 </div>
             </div>
             <!-- single member -->
             <div class="col-sm-4">
                 <div class="member">
                     <img src="img/team/3.jpg" alt="">
-                    <h2>Christinne Williams</h2>
-                    <h3>Digital designer</h3>
+                    <h2>{{$teamC[0]->nom}}</h2>
+                    <h3>{{$teamC[0]->poste->titre}}</h3>
                 </div>
             </div>
         </div>

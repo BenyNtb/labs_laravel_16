@@ -49,12 +49,14 @@
             <!-- popup video -->
             <div class="intro-video">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <img src="img/video.jpg" alt="">
-                        <a href="https://www.youtube.com/watch?v=JgHfx2v9zOU" class="video-popup">
-                            <i class="fa fa-play"></i>
-                        </a>
-                    </div>
+                    @foreach ($videos as $video)
+                        <div class="col-md-8 col-md-offset-2">
+                            <img src="{{asset('img/'.$video->image)}}" alt="">
+                            <a href="{{$video->url}}" class="video-popup">
+                                <i class="fa fa-play"></i>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
