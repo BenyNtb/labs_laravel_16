@@ -4,29 +4,54 @@
         <div class="row">
             <!-- contact info -->
             <div class="col-md-5 col-md-offset-1 contact-info col-push">
-                <div class="section-title left">
-                    <h2>Contact us</h2>
-                </div>
-                <p>Cras ex mauris, ornare eget pretium sit amet, dignissim et turpis. Nunc nec maximus dui, vel suscipit dolor. Donec elementum velit a orci facilisis rutrum. </p>
-                <h3 class="mt60">Main Office</h3>
-                <p class="con-item">C/ Libertad, 34 <br> 05200 Arévalo </p>
-                <p class="con-item">0034 37483 2445 322</p>
-                <p class="con-item">hello@company.com</p>
+                @foreach ($contacts as $contact)
+                    <div class="section-title left">
+                        <h2>{{$contact->titre}}</h2>
+                    </div>
+                    <p>{{$contact->description}}</p>
+                    <h3 class="mt60">{{$contact->soustitre}}</h3>
+                    <p class="con-item">{{$contact->adresse}}</p>
+                    <p class="con-item">{{$contact->telephone}}</p>
+                    <p class="con-item">{{$contact->mail}}</p>
+                @endforeach
             </div>
             <!-- contact form -->
             <div class="col-md-6 col-pull">
-                <form class="form-class" id="con_form">
+                <form class="form-class" id="con_form" action="{{route('mail')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="contactStore" id="contactStore">
                     <div class="row">
                         <div class="col-sm-6">
-                            <input type="text" name="name" placeholder="Your name">
+                            <input type="text" id="name" name="name" placeholder="Your name">
+                            @error('name')
+                            <span class="text-red-400">
+                                <strong>{{$message}}</strong>
+                            </span>
+                            @enderror                
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" name="email" placeholder="Your email">
+                            <input type="text" id="mail" name="mail" placeholder="Your email">
+                            @error('mail')
+                            <span class="text-red-400">
+                                <strong>{{$message}}</strong>
+                            </span>
+                            @enderror                
                         </div>
                         <div class="col-sm-12">
-                            <input type="text" name="subject" placeholder="Subject">
-                            <textarea name="message" placeholder="Message"></textarea>
-                            <button class="site-btn">send</button>
+                            <label class="hidden" for="subject"></label>
+                            <input type="text" id="subject" name="subject" placeholder="Subject">
+                            @error('subject')
+                            <span class="text-red-400">
+                                <strong>{{$message}}</strong>
+                            </span>
+                            @enderror                
+                            <textarea id="message" name="message" placeholder="Message"></textarea>
+                            @error('message')
+                            <span class="text-red-400">
+                                <strong>{{$message}}</strong>
+                            </span>
+                            @enderror                
+                            <button type="submit" class="site-btn">send</button>
                         </div>
                     </div>
                 </form>

@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Blog;
 use App\Models\Carousel;
 use App\Models\Categorie;
+use App\Models\Contact;
 use App\Models\Discover;
 use App\Models\Logo;
 use App\Models\Photo;
@@ -37,7 +38,8 @@ class AllController extends Controller
         $photos = Photo::all();
         $readies = Ready::all();
         $titres = Titre::all();
-        return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies' ));
+        $contacts = Contact::all();
+        return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies', 'contacts' ));
     }
     public function services(){
         $services3 = Service::InRandomOrder()->limit(3)->get();
@@ -46,7 +48,8 @@ class AllController extends Controller
         return view('services', compact( 'services3', 'articles', 'services'));
     }
     public function contact(){
-        return view('contact');
+        $contacts = Contact::all();
+        return view('contact', compact('contacts'));
     }
     public function blog(){
         $blogs = Blog::all();

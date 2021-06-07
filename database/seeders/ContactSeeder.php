@@ -17,7 +17,7 @@ class ContactSeeder extends Seeder
         DB::table('contacts')->insert([
             'titre' => 'CONTACT US',
             'description' => 'Cras ex mauris, ornare eget pretium sit amet, dignissim et turpis. Nunc nec maximus dui, vel suscipit dolor. Donec elementum velit a orci facilisis rutrum.',
-            'sous-titre' => 'Main Office',
+            'soustitre' => 'Main Office',
             'adresse' => 'C/ Libertad, 34
             05200 Arévalo',
             'telephone' => '0034 37483 2445 322',

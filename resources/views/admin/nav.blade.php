@@ -1,7 +1,4 @@
-@extends('layouts.index')
-
-@section('content')
-        <!-- component -->
+ <!-- component -->
     <!-- component -->
     <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
         <div class="fixed flex flex-col top-0 left-0 w-64 bg-gray-900 h-full shadow-lg">
@@ -74,4 +71,3 @@
             </div>
         </div>
         </div>
-@endsection
