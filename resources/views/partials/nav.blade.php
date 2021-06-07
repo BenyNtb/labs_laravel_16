@@ -12,6 +12,19 @@
             <li class="{{ Request::routeIs('blog') ? 'active' : '' }}"><a href={{route('blog')}}>Blog</a></li>
             <li class="{{ Request::routeIs('contact') ? 'active' : '' }}"><a href={{route('contact')}}>Contact</a></li>
         </ul>
+        @if (Route::has('login'))
+                <div class="">
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" class="">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
     </nav>
 </header>
 <!-- Header section end -->

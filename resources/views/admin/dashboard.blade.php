@@ -1,9 +1,8 @@
 <x-app-layout>
-    {{-- <h1>ADMIN DASHBOARD</h1>
-    @dump(Auth::user())
-    <img width="200" src="{{ asset('img/'. Auth::user()->img) }}" alt="img">
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button>Logout</button>
-    </form> --}}
+    
+    <div class="text-center mx-auto ">
+        <h1 class="text-3xl max-w-full d-flex">Bonjour {{ Auth::user()->prenom }} !</h1>
+        
+
+    </div>
 </x-app-layout>

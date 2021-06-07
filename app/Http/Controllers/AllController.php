@@ -16,6 +16,7 @@ use App\Models\Tag;
 use App\Models\Team;
 use App\Models\Testimonials;
 use App\Models\Titre;
+use App\Models\User;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -37,15 +38,19 @@ class AllController extends Controller
         $centre = $ceo->random(1);
         $photos = Photo::all();
         $readies = Ready::all();
-        $titres = Titre::all();
+        $titres = Titre::find(1);
+        $titreDiscover = Titre::all();
+        $titreService = Titre::all();
         $contacts = Contact::all();
-        return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies', 'contacts' ));
+
+        return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies', 'contacts', 'titres', 'titreDiscover', 'titreService'));
     }
     public function services(){
         $services3 = Service::InRandomOrder()->limit(3)->get();
         $articles = Article::all();
         $services = Service::paginate(3)->fragment('servicePaginate');
-        return view('services', compact( 'services3', 'articles', 'services'));
+        $titres = Titre::find(1);
+        return view('services', compact( 'services3', 'articles', 'services', 'titres'));
     }
     public function contact(){
         $contacts = Contact::all();
@@ -64,4 +69,8 @@ class AllController extends Controller
         $tags = Tag::all();
         return view('blog-post',  compact('categories', 'articles', 'tags'));
     }
+    // public function dashboard(){
+    //     $users =  User::all();
+    //     return view('dashboard', compact('profiles'));
+    // }
 }

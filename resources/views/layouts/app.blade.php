@@ -18,8 +18,7 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('admin/nav')
-
+            @include('layouts.navigation')
             <!-- Page Content -->
             <main>
                 {{ $slot }}
