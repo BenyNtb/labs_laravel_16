@@ -3,7 +3,13 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="section-title">
-            <h2>{{$team[0]->titre}}</h2>
+            <h2> 
+                @php
+                $titre1 = str_replace('(', '<span>', $titres[0]->team);
+                $titre2 = str_replace(')', '</span>', $titre1);
+                echo $titre2;
+                @endphp
+            </h2>
         </div>
         <div class="row">
             <!-- single member -->

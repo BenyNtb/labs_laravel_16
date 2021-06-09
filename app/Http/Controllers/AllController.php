@@ -38,18 +38,21 @@ class AllController extends Controller
         $centre = $ceo->random(1);
         $photos = Photo::all();
         $readies = Ready::all();
-        $titres = Titre::find(1);
-        $titreDiscover = Titre::all();
-        $titreService = Titre::all();
+        $titres = Titre::all();
+        // $titreDiscover = Titre::where('id', 1)->get();
+        // $titreService = Titre::where('id', 2)->get();
+        // $titreTeam = Titre::where('id', 3)->get();
         $contacts = Contact::all();
 
-        return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies', 'contacts', 'titres', 'titreDiscover', 'titreService'));
+        return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies', 'contacts', 'titres'));
     }
     public function services(){
         $services3 = Service::InRandomOrder()->limit(3)->get();
         $articles = Article::all();
         $services = Service::paginate(3)->fragment('servicePaginate');
-        $titres = Titre::find(1);
+        // $titreDiscover = Titre::where('id', 1)->get();
+        // $titreService = Titre::where('id', 2)->get();
+        $titres = Titre::all();
         return view('services', compact( 'services3', 'articles', 'services', 'titres'));
     }
     public function contact(){

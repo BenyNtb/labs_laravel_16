@@ -30,7 +30,13 @@
     <div class="about-contant">
         <div class="container">
             <div class="section-title">
-                <h2>{{$discovers[0]->titre}}</h2>
+                <h2>
+                    @php
+                    $titre1 = str_replace('(', '<span>', $titres[0]->discover);
+                    $titre2 = str_replace(')', '</span>', $titre1);
+                    echo $titre2;
+                    @endphp
+                </h2>
             </div>
             <div class="row">
                 @foreach ($discovers as $discover)

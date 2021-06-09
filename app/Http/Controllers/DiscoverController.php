@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Discover;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DiscoverController extends Controller
 {
@@ -57,7 +58,8 @@ class DiscoverController extends Controller
      */
     public function edit(Discover $discover)
     {
-        //
+        $this->authorize('webmaster', Auth::user()); 
+        return view('admin.pages.home.discover.edit', compact('discover')); 
     }
 
     /**
