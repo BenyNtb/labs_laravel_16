@@ -12168,8 +12168,9 @@ select {
 }
 
 .my-6 {
-  margin-top: 1.5rem;
+  margin-top: -37.5rem;
   margin-bottom: 1.5rem;
+  margin-left: 250px;
 }
 
 .mx-6 {
@@ -12415,6 +12416,9 @@ select {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .my-px {

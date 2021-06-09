@@ -2,8 +2,8 @@
     @foreach ($users as $user)
     <tr class="hover:bg-grey-lighter">
         <td class="py-4 px-6 border-b border-grey-light">
-            {{-- <img width="60" src="{{ asset('img/' . $user->avatar->src) }}"
-                alt="{{ $user->avatar->nom }}"> --}}
+            <img width="60" src="{{ asset('img/bo/' . $user->avatar->src) }}"
+                alt="{{ $user->avatar->nom }}">
         </td>
         <td class="py-4 px-6 border-b border-grey-light">{{ $user->nom }}</td>
         <td class="py-4 px-6 border-b border-grey-light">{{ $user->email }}</td>

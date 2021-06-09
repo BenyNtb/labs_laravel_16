@@ -57,7 +57,8 @@ class AllController extends Controller
     }
     public function contact(){
         $contacts = Contact::all();
-        return view('contact', compact('contacts'));
+        $sujets = ContactSujet::all();
+        return view('contact', compact('contacts', 'sujets'));
     }
     public function blog(){
         $blogs = Blog::all();
