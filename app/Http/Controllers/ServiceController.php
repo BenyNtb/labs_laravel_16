@@ -39,18 +39,18 @@ class ServiceController extends Controller
      */
     public function store(Request $request, Service $service)
     {
-        $this->authorize('webmaster', Auth::user());
+        // $this->authorize('webmaster', Auth::user());
 
-        $request->validate([
-            "icone" => "required",
-            "soustitre" => "required",
-            "description" => "required|max:200"
-        ]);
-        $service->icone = $request->icone; 
-        $service->soustitre = $request->soustitre; 
-        $service->description = $request->description; 
-        $service->save();
-        return redirect()->route('services.index')->with('success', 'Modification Service effectuée avec succès !'); 
+        // $request->validate([
+        //     "icone" => "required",
+        //     "soustitre" => "required",
+        //     "description" => "required|max:200"
+        // ]);
+        // $service->icone = $request->icone; 
+        // $service->soustitre = $request->soustitre; 
+        // $service->description = $request->description; 
+        // $service->save();
+        // return redirect()->route('services.index')->with('success', 'Modification Service effectuée avec succès !'); 
     }
 
     /**

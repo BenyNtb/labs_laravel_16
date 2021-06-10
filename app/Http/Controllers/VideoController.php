@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
 {
@@ -14,7 +15,9 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('webmaster', Auth::user());
+        $video = Video::all();
+        return view('admin.pages.home.video', compact('video'));
     }
 
     /**
@@ -33,9 +36,19 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Video $video)
     {
-        //
+        // $this->authorize('webmaster', Auth::user());
+
+        // $request->validate([
+        //     "icone" => "required",
+        //     "soustitre" => "required",
+        //     "description" => "required|max:200"
+        // ]);
+        // $video->image = $request->image; 
+        // $video->url = $request->video; 
+        // $video->save();
+        // return redirect()->route('video.index')->with('success', 'Modification Service effectuée avec succès !'); 
     }
 
     /**
@@ -55,9 +68,11 @@ class VideoController extends Controller
      * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function edit(Video $video)
+    public function edit(Video $id)
     {
-        //
+        $video = $id;
+        $this->authorize('webmaster', Auth::user()); 
+        return view('admin.pages.home.video', compact('video'));
     }
 
     /**
@@ -69,7 +84,18 @@ class VideoController extends Controller
      */
     public function update(Request $request, Video $video)
     {
-        //
+        $this->authorize('webmaster', Auth::user()); 
+
+        $request->validate([
+            "icone" => "required",
+            "soustitre" => "required", 
+            "description" => "required|max:200"
+        ]);
+        $video->image  = $request->image; 
+        $video->url = $request->url; 
+        $video->save(); 
+
+        return redirect()->route('video.index')->with('success', 'Modification Service effectuée avec succès !');
     }
 
     /**

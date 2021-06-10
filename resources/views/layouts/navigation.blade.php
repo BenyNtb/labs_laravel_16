@@ -70,7 +70,7 @@
                                     <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('testimonials.index') }}">Testimonials
                                 </li>
                                 <li class="ml-14">
-                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('services.index') }}">Services
+                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('service.index') }}">Services
                                 </li>
                                 <li class="ml-14">
                                     <a class="text-gray-100 hover:text-black hover:font-bold"  href="{{ route('team.index') }}">Team

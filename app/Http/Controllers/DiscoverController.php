@@ -38,9 +38,18 @@ class DiscoverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Discover $discover)
     {
-        //
+        $this->authorize('webmaster', Auth::user());
+
+        $request->validate([
+            "titre" => "required",
+            "description" => "required|max:200"
+        ]);
+        $discover->titre = $request->stitre; 
+        $discover->description = $request->description; 
+        $discover->save();
+        return redirect()->route('discover.index')->with('success', 'Modification Service effectuée avec succès !'); 
     }
 
     /**
@@ -60,10 +69,11 @@ class DiscoverController extends Controller
      * @param  \App\Models\Discover  $discover
      * @return \Illuminate\Http\Response
      */
-    public function edit(Discover $discover)
+    public function edit(Discover $id )
     {
+        $discover = $id;
         $this->authorize('webmaster', Auth::user()); 
-        return view('admin.pages.home.discover.edit', compact('discover')); 
+        return view('admin.pages.home.editDiscover', compact('discover')); 
     }
 
     /**
@@ -75,7 +85,17 @@ class DiscoverController extends Controller
      */
     public function update(Request $request, Discover $discover)
     {
-        //
+        $this->authorize('webmaster', Auth::user()); 
+
+        $request->validate([
+            "titre" => "required",
+            "description" => "required"
+        ]);
+        $discover->titre = '';
+        $discover->description = $request->description; 
+        $discover->save(); 
+
+        return redirect()->route('homediscover.index')->with('success', 'Modification Service effectuée avec succès !');
     }
 
     /**

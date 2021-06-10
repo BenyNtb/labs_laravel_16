@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Icone;
 use App\Models\Testimonials;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TestimonialsController extends Controller
 {
@@ -14,7 +16,9 @@ class TestimonialsController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('webmaster', Auth::user());
+        $testimonials = Testimonials::all();
+        return view('admin.pages.home.testimonials', compact('testimonials'));
     }
 
     /**
@@ -55,9 +59,11 @@ class TestimonialsController extends Controller
      * @param  \App\Models\Testimonials  $testimonials
      * @return \Illuminate\Http\Response
      */
-    public function edit(Testimonials $testimonials)
+    public function edit(Testimonials $id)
     {
-        //
+        $testimonials = $id;
+        $this->authorize('webmaster', Auth::user()); 
+        return view('admin.pages.home.editDiscover', compact('testimonials'));
     }
 
     /**
@@ -69,7 +75,17 @@ class TestimonialsController extends Controller
      */
     public function update(Request $request, Testimonials $testimonials)
     {
-        //
+        $this->authorize('webmaster', Auth::user()); 
+
+        $request->validate([
+            "soustitre" => "required", 
+            "description" => "required|max:200"
+        ]);
+        $$testimonials->nom = $request->nom;
+        $$testimonials->avis = $request->avis; 
+        $$testimonials->save(); 
+
+        return redirect()->route('testimonials.index')->with('success', 'Modification Service effectuée avec succès !');
     }
 
     /**

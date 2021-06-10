@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <div class="content" >
         <a href="{{route('homecard.index')}}">Retour à cards</a>
         <div class="container">
@@ -34,4 +34,4 @@
             </form>
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> --}}
