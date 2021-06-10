@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Discover;
+use App\Models\Service;
+use App\Models\Titre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +17,9 @@ class DiscoverController extends Controller
      */
     public function index()
     {
-        //
+        $titres = Titre::all();
+        $services = Service::all();
+        return view('admin.pages.home.discover', compact('titres', 'services'));
     }
 
     /**

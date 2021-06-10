@@ -6,8 +6,12 @@
                 <ul class="relative m-0 p-0 list-none h-full">
                     <li
                         class="text-white text-2xl p-4 w-full flex relative shadow-sm justify-start bg-gray-800 border-b-2 border-gray-700">
+                        {{-- @foreach ($logo as $logo)
+                            <img src="{{asset('img/'.$logo->logo)}}" alt="logo">
+                        @endforeach --}}
                         LABS
                     </li>
+
                     <li
                         class="text-white p-4 w-full flex relative shadow-sm justify-start bg-gray-800 border-b-2 border-gray-700">
                         <div class="mr-4 flex-shrink-0 my-auto">
@@ -23,7 +27,7 @@
                     </li>
                     <li class="p-4 w-full flex relative shadow-sm">
                         <div class="flex-auto my-1">
-                            <span class="text-white font-medium" >Accueil</span>
+                            <span class="text-white font-medium">Accueil</span>
                         </div>
                     </li>
 
@@ -51,10 +55,30 @@
                             </svg>
                         </div>
                         <div class="flex-auto my-1">
-                            {{-- <a href="{{ route('homecards.index') }}"> --}}
-                                <span>Home</span>
+                            <a href="{{ route('homecard.index') }}">
+                            <span>Home
+                                <li class="ml-14">
+                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('homecard.index') }}">Cards
+                                </li>
+                                <li class="ml-14">
+                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('homediscover.index') }}">Discover
+                                </li>
+                                <li class="ml-14">
+                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('video.index') }}">Video
+                                </li>
+                                <li class="ml-14">
+                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('testimonials.index') }}">Testimonials
+                                </li>
+                                <li class="ml-14">
+                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('services.index') }}">Services
+                                </li>
+                                <li class="ml-14">
+                                    <a class="text-gray-100 hover:text-black hover:font-bold"  href="{{ route('team.index') }}">Team
+                                </li>
+                            </span>
+
                             </a>
-                            
+
                         </div>
                     </div>
 
@@ -64,7 +88,8 @@
                                 <path
                                     d="M21 3H3C2 3 1 4 1 5v14c0 1.1.9 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zM5 17l3.5-4.5 2.5 3.01L14.5 11l4.5 6H5z">
                                 </path>
-                            </svg> </div>
+                            </svg>
+                        </div>
                         <div class="flex-auto my-1">
                             <span>Services</span>
                         </div>
@@ -76,7 +101,8 @@
                                 <path
                                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z">
                                 </path>
-                            </svg> </div>
+                            </svg>
+                        </div>
                         <div class="flex-auto my-1">
                             <span>Blog</span>
                         </div>
@@ -88,7 +114,8 @@
                                 <path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2
                                 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0
                                 00-2-2h-1V1m-1 11h-5v5h5v-5z"></path>
-                            </svg> </div>
+                            </svg>
+                        </div>
                         <div class="flex-auto my-1">
                             <span>Newsletter</span>
                         </div>
@@ -103,7 +130,7 @@
                             </svg>
                         </div>
                         <div class="flex-auto my-1">
-                            <span>contact</span>
+                            <span>Contact</span>
                         </div>
                     </div>
                 </ul>
@@ -124,15 +151,14 @@
                 </button>
 
                 <button class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none">
-                    <img class="h-full w-full object-cover" src="{{ asset(Auth::user()->img) }}"
-                        alt="Avatar">
+                    <img class="h-full w-full object-cover" src="{{ asset(Auth::user()->img) }}" alt="Avatar">
                 </button>
                 <span class="font-semibold text-white">{{ Auth::user()->nom }} {{ Auth::user()->email }}</span>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button class="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-3 rounded">Logout</button>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-3 rounded">Logout</button>
 
-            </form>
+                </form>
             </div>
         </header>
 

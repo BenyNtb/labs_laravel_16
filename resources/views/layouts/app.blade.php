@@ -12,6 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}">
+        <link rel="stylesheet" href="{{asset('css/flaticon.css')}}" />
 
         <!-- Scripts -->
         <script src="{{ asset('js/tailwind.js') }}" defer></script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Icone;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,7 @@ class ServiceController extends Controller
         $service->soustitre = $request->soustitre; 
         $service->description = $request->description; 
         $service->save();
-        return redirect()->route('service.index')->with('success', 'Modification Service effectuée avec succès !'); 
+        return redirect()->route('services.index')->with('success', 'Modification Service effectuée avec succès !'); 
     }
 
     /**
@@ -69,10 +70,12 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Service $id)
     {
+        $cards = $id;
+        $icones = Icone::all();
         $this->authorize('webmaster', Auth::user()); 
-        return view('admin.services.edit', compact('service')); 
+        return view('admin.pages.home.editCard', compact('cards', 'icones')); 
     }
 
     /**
@@ -91,12 +94,13 @@ class ServiceController extends Controller
             "soustitre" => "required", 
             "description" => "required|max:200"
         ]);
-        $service->icone  = $request->icone; 
-        $service->soustitre = $request->soustitre; 
+        $service->icone_id  = $request->icone; 
+        $service->titre = '';
+        $service->sous_titre = $request->soustitre; 
         $service->description = $request->description; 
         $service->save(); 
 
-        return redirect()->route('service.index')->with('success', 'Modification Service effectuée avec succès !');
+        return redirect()->route('services.index')->with('success', 'Modification Service effectuée avec succès !');
     }
 
     /**
@@ -109,6 +113,6 @@ class ServiceController extends Controller
     {
         $this->authorize('webmaster', Auth::user());
         $service->delete();
-        return redirect()->route('service.index')->with('success', 'Service bien supprimé'); 
+        return redirect()->route('services.index')->with('success', 'Service bien supprimé'); 
     }
 }

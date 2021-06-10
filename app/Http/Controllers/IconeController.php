@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Icone;
+use App\Models\Logo;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class IconeController extends Controller
@@ -14,7 +16,9 @@ class IconeController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        $icones = Logo::all();
+        return view('admin.pages.home.card', compact('users', 'icones'));
     }
 
     /**

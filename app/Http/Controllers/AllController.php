@@ -39,6 +39,7 @@ class AllController extends Controller
         $photos = Photo::all();
         $readies = Ready::all();
         $titres = Titre::all();
+        // dd($titres);
         // $titreDiscover = Titre::where('id', 1)->get();
         // $titreService = Titre::where('id', 2)->get();
         // $titreTeam = Titre::where('id', 3)->get();
