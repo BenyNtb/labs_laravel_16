@@ -3,7 +3,7 @@
     <div class="content" >
         <a href="{{route('homecard.index')}}">Retour à cards</a>
         <div class="grid mt-8  gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-2">
-            <form method="POST" action="{{route('homecard.update', $cards->id)}}">
+            <form method="POST" action="{{route('service.update', $cards->id)}}">
                 @csrf
                 @method('PUT')
                 <div class="flex flex-col">

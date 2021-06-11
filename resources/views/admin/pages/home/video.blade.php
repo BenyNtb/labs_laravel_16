@@ -9,7 +9,8 @@
                 <div class="flex-auto ml-3 justify-evenly py-2">
                     @foreach ($videos as $video)
                         <div class="flex flex-wrap ">
-                            <h2 class="flex-auto text-lg font-medium">{{$video->url}}</h2>
+                            <img src="{{asset($video->image)}}" alt="">
+                            {{-- <h2 class="flex-auto text-lg font-medium">{{$video->url}}</h2> --}}
                         </div>
                     @endforeach
                     <p class="mt-3"></p>

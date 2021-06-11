@@ -68,11 +68,11 @@ class VideoController extends Controller
      * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function edit(Video $id)
+    public function edit()
     {
-        $video = $id;
+        $videos = Video::find(1);
         $this->authorize('webmaster', Auth::user()); 
-        return view('admin.pages.home.video', compact('video'));
+        return view('admin.pages.home.video', compact('videos'));
     }
 
     /**

@@ -3,7 +3,7 @@
     <div class="content" >
         <a href="{{route('testimonials.index')}}">Retour à Testimonials</a>
         <div class="grid mt-8  gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-2">
-            <form method="POST" action="{{route('testimonials.update', $testimonial->id)}}">
+            <form method="POST" action="{{route('testimonials.update', $testimonials->id)}}">
                 @csrf
                 @method('PUT')
                 <div class="flex flex-col">
@@ -12,17 +12,19 @@
                             <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
                             </div>
                             <div class="flex-auto ml-3 justify-evenly py-2">
-                                <input id="nom" name="nom" value="{{$testimonial->nom}}" class="border border-gray-400 p-2 rounded-lg" x-model="currentColor">
+                                <input id="nom" name="nom" value="{{$testimonials->nom}}" class="border border-gray-400 p-2 rounded-lg" x-model="currentColor">
                                     @error('nom')
                                     <span class="invalid-feedback"><strong>{{$message}}</strong></span>
                                     @enderror
 
                                     <h2 class="flex-auto text-lg font-medium">
-                                        <input id="avis" name="avis" value="{{$testimonial->avis}}" class="border border-gray-400 p-2 rounded-lg" x-model="currentColor">
+                                        <input id="avis" name="avis" value="{{$testimonials->avis}}" class="border border-gray-400 p-2 rounded-lg" x-model="currentColor">
                                         @error('avis')
                                         <span class="invalid-feedback"><strong>{{$message}}</strong></span>
                                         @enderror
                                     </h2>
+
+                                    
                                 </div>
 
                                 <p class="mt-3"></p>
