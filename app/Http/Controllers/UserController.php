@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Discover;
+use App\Models\Genre;
 use App\Models\Poste;
 use App\Models\Role;
 use App\Models\Service;
@@ -10,6 +11,8 @@ use App\Models\Titre;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -34,7 +37,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('admin', Auth::user()); 
+        $roles = Role::all(); 
+        $postes = Poste::all();
+        $genres = Genre::all();
+        return view('admin.user.create', compact('roles', 'postes', 'genres'));
     }
 
     /**
@@ -45,7 +52,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('admin', Auth::user()); 
+        $request->validate([
+            "nom" => "required",  
+            "email" => "required",
+            "img" => "required",
+        ]);
+        $user = new User(); 
+        $user->nom = $request->nom; 
+        $user->email = $request->email; 
+        $user->role_id = $request->role; 
+        $user->poste_id = $request->poste;
+        $user->genre_id = $request->genre;
+
+        $request->file('img')->storePublicly('img/', 'public');
+        $user->img = $request->file('img')->hashName();
+
+        $user->password = Hash::make('user2021');
+        $user->save(); 
+        return redirect()->back()->with('success', "Utilisateur a été ajouté"); 
     }
 
     /**

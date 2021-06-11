@@ -6,6 +6,8 @@ use App\Http\Controllers\MailContactController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServicehomeController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
@@ -64,11 +66,11 @@ Route::get('/admin/profil', [UserController::class, 'index'])->name('profil.inde
 Route::get('/admin/home', [UserController::class, 'index'])->name('home.index');
 Route::get('/admin/home/{id}/edit', [UserController::class, 'edit'])->name('home.edit');
 
-//Service
+//Service Home
 
-Route::get('/admin/services', [ServiceController::class, 'index'])->name('service.index');
-Route::get('/admin/services/{id}/delete', [ServiceController::class, 'destroy'])->name('services.destroy');
-Route::put('/update/services/{id}/edit', [ServiceController::class, 'update'])->name('services.update');
+Route::get('/admin/home/services', [ServicehomeController::class, 'index'])->name('homeservice.index');
+Route::get('/admin/services/{id}/delete', [ServicehomeController::class, 'destroy'])->name('services.destroy');
+Route::put('/update/services/{id}/edit', [ServicehomeController::class, 'update'])->name('homeservice.update');
 
 //Mail
 
@@ -76,21 +78,28 @@ Route::post('/mail', [MailContactController::class, 'store'])->name('mail');
 Route::post('/mail/newsletter', [NewsletterController::class, 'store'])->name('newsletter');
 
                                  // P A G E    H O M E
-    //Home
+    //Card
 Route::get('home/card', function(){
     $cards = Service::all();
     $icones = Icone::all();
     return view('admin/pages/home/card', compact('cards', 'icones'));
     
-})->name('homecard.index');
+})->name('homecard.index'); 
+
+// -----------------------------------------------------
+
+//Service
+Route::get('home/services', function(){
+$services = Service::all();
+return view('admin/pages/home/services', compact('services'));
+})->name('services.index');
 
     //Edit || Update
-// Route::get('/admin/pages/home/{id}/edit', [TestimonialsController::class, 'edit'])->name('homecard.edit');
-// Route::put('/admin/pages/home/{id}/update', [TestimonialsController::class, 'update'])->name('homecard.update');
-Route::get('pages/beny/{id}/edit', [ServiceController::class, 'edit'])->name('homecard.edit');
-Route::put('pages/test/{id}/update', [ServiceController::class, 'update'])->name('homecard.update');
+Route::get('pages/beny/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
+Route::put('pages/test/{id}/update', [ServiceController::class, 'update'])->name('service.update');
+
 // ---------------------------------------------------------------------
-    //Discover
+    // Discover
 Route::get('home/discover', function(){
     $discover = Titre::find(1);
     $service = Titre::find(2);
@@ -125,17 +134,15 @@ Route::put('home/testimonials/{id}/update',[TestimonialsController::class, 'upda
 
 // ------------------------------------------
 
-    //Service
-Route::get('home/services', function(){
-    $services = Service::all();
-    return view('admin/pages/home/services', compact('services'));
-})->name('services.index');
 
     //Team
 Route::get('home/team', function(){
     $teams = Team::all();
     return view('admin/pages/home/team', compact('teams'));
 })->name('team.index');
+// Edit || Update
+Route::get('home/test/team/{id}/edit', [TeamController::class, 'edit'])->name('team.edit');
+Route::put('home/team/{id}/update', [TeamController::class, 'update'])->name('team.update');
 
 // Auth
 Route::get('labslogin', function () {

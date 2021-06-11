@@ -1,6 +1,5 @@
 <x-app-layout>
     <div class="text-center bg-purple-500 py-5 shadow-md w-4/12 mx-auto rounded-lg">
-        <h1 class="text-3xl">All users</h1>
         <p>Nombre d'utilisateurs : {{ count($users) }}</p>
     </div>
     @include('layouts.flash')

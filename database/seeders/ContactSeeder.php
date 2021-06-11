@@ -22,6 +22,8 @@ class ContactSeeder extends Seeder
             05200 Arévalo',
             'telephone' => '0034 37483 2445 322',
             'mail' => 'hello@company.com',
+            "position" => "40.801485408197856, -73.96745953467104", 
+                "footer" => "All rights reserved. Designed by <a href='#'>Colorlib</a>",
             'created_at' => now(),
         ]);
     }

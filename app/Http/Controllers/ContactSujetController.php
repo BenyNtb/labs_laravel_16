@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ArticleBlog;
-use App\Models\Blog;
-use App\Models\Categorie;
-use App\Models\Tag;
+use App\Models\ContactSujet;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class ContactSujetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $articles = Blog::paginate(3); 
-        return view('admin.blog.index', compact('articles'));
+        //
     }
 
     /**
@@ -45,10 +41,10 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ArticleBlog  $articleBlog
+     * @param  \App\Models\ContactSujet  $contactSujet
      * @return \Illuminate\Http\Response
      */
-    public function show(BlogController $Blog)
+    public function show(ContactSujet $contactSujet)
     {
         //
     }
@@ -56,24 +52,22 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ArticleBlog  $articleBlog
+     * @param  \App\Models\ContactSujet  $contactSujet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(ContactSujet $contactSujet)
     {
-        $categories = Categorie::all(); 
-        $tags = Tag::all(); 
-        return view('admin.blog.edit', compact('blog', 'categories', 'tags'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ArticleBlog  $articleBlog
+     * @param  \App\Models\ContactSujet  $contactSujet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, ContactSujet $contactSujet)
     {
         //
     }
@@ -81,10 +75,10 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ArticleBlog  $articleBlog
+     * @param  \App\Models\ContactSujet  $contactSujet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $articleBlog)
+    public function destroy(ContactSujet $contactSujet)
     {
         //
     }

@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\Carousel;
 use App\Models\Categorie;
 use App\Models\Contact;
+use App\Models\ContactSujet;
 use App\Models\Discover;
 use App\Models\Logo;
 use App\Models\Photo;
@@ -23,7 +24,7 @@ use Illuminate\Http\Request;
 class AllController extends Controller
 {
     public function home(){
-        $logo = Logo::find(1);
+        $logo = asset("img/big-logo.png"); 
         $videos = Video::all();
         $carousel = Carousel::all();
         $services3 = Service::inRandomOrder()->limit(3)->get();
@@ -39,13 +40,14 @@ class AllController extends Controller
         $photos = Photo::all();
         $readies = Ready::all();
         $titres = Titre::all();
+        $carousel = Carousel::all();
         // dd($titres);
         // $titreDiscover = Titre::where('id', 1)->get();
         // $titreService = Titre::where('id', 2)->get();
         // $titreTeam = Titre::where('id', 3)->get();
         $contacts = Contact::all();
 
-        return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies', 'contacts', 'titres'));
+        return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies', 'contacts', 'titres', 'carousel'));
     }
     public function services(){
         $services3 = Service::InRandomOrder()->limit(3)->get();
@@ -73,6 +75,16 @@ class AllController extends Controller
         $articles = Article::all();
         $tags = Tag::all();
         return view('blog-post',  compact('categories', 'articles', 'tags'));
+    }
+    public function search(Request $request){ 
+        if($request->has('x')){
+            $x = $request->x; 
+            $route = "search"; 
+            $cats  = Categorie::all();
+            $tags = Tag::all(); 
+            $results = Blog::where('titre', 'LIKE', "%" . $x . "%")->get();
+            return view('blogshow', compact('route', 'results', 'cats', 'tags','x'));
+        }
     }
     // public function dashboard(){
     //     $users =  User::all();

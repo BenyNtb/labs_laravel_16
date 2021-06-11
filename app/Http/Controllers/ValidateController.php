@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Blog;
+use App\Models\Commentaire;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class ValidateController extends Controller
+{
+    public function index()
+    {
+        $roles = Role::all();
+        $commentaires = Commentaire::where('validate', 0)->get();
+        $articles = Blog::where('validate', 0)->where('trash', 0)->get();
+        $users = User::where('validate', 0)->get();
+        
+        return view('admin.pages.validate', compact('roles','commentaires','articles', 'users'));
+    }
+    public function updateCommentaire(Commentaire $id)
+    {
+        $commentaire = $id;
+        $commentaire->validate = 1;
+        $commentaire->save();
+        return redirect()->back()->with('success', 'Commentaire validé');
+    }
+
+    public function deleteUser(User $id)
+    {
+        $user = $id;
+        $user->delete();
+        return redirect()->back()->with('success', 'User supprimé');
+    }
+
+    public function deleteComment(Commentaire $id)
+    {
+        $commentaire = $id;
+        $commentaire->delete();
+        return redirect()->back()->with('success', 'Commentaire supprimé');
+    }
+
+    public function updateArticle(Blog $id)
+    {
+        $post = $id;
+        $post->validate = 1;
+        $post->save();
+        return redirect()->back()->with('success', 'Article validé');
+    }
+}

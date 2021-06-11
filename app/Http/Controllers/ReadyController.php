@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ready;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReadyController extends Controller
 {
@@ -14,7 +15,9 @@ class ReadyController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('webmaster', Auth::user()); 
+        $readies = Ready::all();
+        return view('admin.pages.home.ready', compact('readies')); 
     }
 
     /**
@@ -57,7 +60,8 @@ class ReadyController extends Controller
      */
     public function edit(Ready $ready)
     {
-        //
+        $this->authorize('webmaster', Auth::user()); 
+        return view('admin.pages.home.editReady', compact('ready'));
     }
 
     /**
@@ -69,7 +73,16 @@ class ReadyController extends Controller
      */
     public function update(Request $request, Ready $ready)
     {
-        //
+        $this->authorize('webmaster', Auth::user()); 
+        $request->validate([
+            "titre" => "required",
+            "texte" => "required",
+        ]);
+        $ready->titre = $request->titre; 
+        $ready->texte = $request->texte;
+        $ready->save(); 
+
+        return redirect()->route('ready.index')->with('success', 'Modification reussi'); 
     }
 
     /**

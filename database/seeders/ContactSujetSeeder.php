@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CarouselSeeder extends Seeder
+class ContactSujetSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,21 +14,19 @@ class CarouselSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('carousels')->insert([
+        DB::table('contact_sujets')->insert([
             [
-                'image' => '01.jpg',
-                'titre' => 'Get your freebie template now!',
-                "principal" => 1,
+                'option' => "More information",
                 'created_at' => now(),
             ],
             [
-                'image' => '02.jpg',
-                'titre' => 'Get your freebie template now!',
-                "principal" => 0,
+                'option' => 'Job',
                 'created_at' => now(),
-
             ],
-            
+            [
+                'option' => 'Quote request',
+                'created_at' => now(),
+            ],
         ]);
     }
 }

@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('validate');
             $table->rememberToken();
-            $table->timestamps();
             $table->unsignedBigInteger('genre_id');
             $table->foreign('genre_id')->references('id')->on('genres');
             $table->unsignedBigInteger('photo_id');
@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->foreign('role_id')->references('id')->on('roles');
             $table->unsignedBigInteger('poste_id');
             $table->foreign('poste_id')->references('id')->on('postes');
+            $table->timestamps();
         });
     }
 

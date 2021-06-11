@@ -62,8 +62,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Poste::class);
     }
-    public function articleblog()
-    {
-        return $this->belongsTo(Article::class);
+    public function blogs(){
+        return $this->hasMany(Blog::class); 
     }
 }

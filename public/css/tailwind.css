@@ -2645,7 +2645,7 @@ select {
 
 .bg-purple-500 {
   --tw-bg-opacity: 1;
-  background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
+  background-color: #122173;
 }
 
 .bg-purple-600 {
@@ -12423,6 +12423,7 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: -115px;
 }
 
 .my-px {
@@ -14814,6 +14815,7 @@ select {
 
 .p-4 {
   padding: 1rem;
+  width: 1518px;
 }
 
 .p-5 {

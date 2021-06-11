@@ -18,7 +18,7 @@ class ServiceController extends Controller
     {
         $this->authorize('webmaster', Auth::user());
         $services = Service::paginate(6)->fragment('servicePaginate');
-        return view('admin.services.index', compact('services'));
+        return view('admin.pages.home.services', compact('services'));
     }
 
     /**

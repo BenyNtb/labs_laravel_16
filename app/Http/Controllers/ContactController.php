@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\ContactSujet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -14,7 +16,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('webmaster', Auth::user()); 
+        $contact = Contact::all();
+        $sujets = ContactSujet::all();
+        return view('admin.contact.index', compact('contact', 'sujets'));
     }
 
     /**
@@ -57,7 +62,8 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        $this->authorize('webmaster', Auth::user()); 
+        return view('admin.contact.edit', compact('contact'));
     }
 
     /**
@@ -69,7 +75,18 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $this->authorize('webmaster', Auth::user()); 
+        $contact = Contact::first(); 
+
+        foreach($request->all() as $key => $value) {
+            if(($key != "_token") && ($key != "_method")){
+                $contact->$key = $value; 
+            }
+        }
+
+        $contact->save();
+
+        return redirect()->back()->with('success', 'Page contact bien actualisée');
     }
 
     /**
