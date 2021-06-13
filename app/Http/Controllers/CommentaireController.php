@@ -33,9 +33,24 @@ class CommentaireController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        request()->validate([
+            "auteur" => ["required"],
+            "email" => ["required", "email"],
+            "message" => ["required"],
+        ]);
+
+        $commentaires = new Commentaire();
+        $commentaires->auteur = $request->auteur;
+        $commentaires->email = $request->email;
+        $commentaires->message = $request->message;
+        $commentaires->validate = 0;
+        
+        $commentaires->blog_id = $id;
+        
+        $commentaires->save();
+        return back()->with('success', 'Votre commentaire a été envoyé');
     }
 
     /**
@@ -67,9 +82,12 @@ class CommentaireController extends Controller
      * @param  \App\Models\Commentaire  $commentaire
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Commentaire $commentaire)
+    public function update(Commentaire $id)
     {
-        //
+        $commentaires = $id;
+        $commentaires->validate = 1;
+        $commentaires->save();
+        return redirect()->back()->with('success', 'Commentaire validé');
     }
 
     /**

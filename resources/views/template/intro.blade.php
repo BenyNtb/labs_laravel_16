@@ -6,7 +6,7 @@
             <p>
                 @foreach ($carousel as $car)
                     @if ($car->principal == 1)
-                        {{ $car->titre}}
+                        {{ $car->titreIntro}}
                     @endif
                 @endforeach
         </p>

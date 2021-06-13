@@ -86,7 +86,7 @@ class ContactController extends Controller
 
         $contact->save();
 
-        return redirect()->back()->with('success', 'Page contact bien actualisée');
+        return redirect()->back()->with('success', 'Page contact a été actualisée');
     }
 
     /**

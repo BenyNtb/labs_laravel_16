@@ -10,7 +10,8 @@
                     </div>
                     <p>{{$contact->description}}</p>
                     <h3 class="mt60">{{$contact->soustitre}}</h3>
-                    <p class="con-item">{{$contact->adresse}}</p>
+                    <p class="con-item">{{$contact->adresse1}}</p>
+                    <p class="con-item">{{$contact->adresse2}}</p>
                     <p class="con-item">{{$contact->telephone}}</p>
                     <p class="con-item">{{$contact->mail}}</p>
                 @endforeach

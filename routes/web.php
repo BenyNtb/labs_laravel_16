@@ -149,6 +149,9 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/admin/user', UserController::class)->middleware('admin');
 });
 
+// Search
+Route::get('/blog/search/', [AllController::class, 'search'])->name('blog.search');
+
 // Auth
 Route::get('labslogin', function () {
     return view('/admin/dashboard');

@@ -13,7 +13,7 @@
                         <div class="icon">
                             <i class="flaticon-023-flask"></i>
                         </div>
-                        <h2>{{$service->sous_titre}}</h2>
+                        <h2>{{$service->soustitre}}</h2>
                         <p>{{$service->description}}</p>
                     </div>
                 </div>
