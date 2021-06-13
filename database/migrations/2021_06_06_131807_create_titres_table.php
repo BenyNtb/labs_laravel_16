@@ -15,9 +15,7 @@ class CreateTitresTable extends Migration
     {
         Schema::create('titres', function (Blueprint $table) {
             $table->id();
-            $table->string('discover');
-            $table->string('service');
-            $table->string('team');
+            $table->string('titre');
             $table->timestamps();
         });
     }

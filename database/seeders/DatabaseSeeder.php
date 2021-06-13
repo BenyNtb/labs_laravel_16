@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-
-
+use App\Models\Commentaire;
+use App\Models\ContactSujet;
+use App\Models\Newsletter;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -36,7 +37,10 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             BlogTagSeeder::class,
             ContactSeeder::class,
+
+            CommentaireSeeder::class,
             TitreSeeder::class,
+            ContactSujetSeeder::class,
         ]);
     }
 }

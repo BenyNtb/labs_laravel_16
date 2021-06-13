@@ -16,64 +16,64 @@ class ServiceSeeder extends Seeder
     {
         DB::table('services')->insert([
             [
-                'titre' => 'GET IN THE LAB AND SEE THE SERVICES',
-                'sous_titre' => 'GET IN THE LAB',
+                
+                'soustitre' => 'GET IN THE LAB',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..',
                 'icone_id' => 1,
                 'created_at' => now(),
             ],
             [
-                'titre' => 'GET IN THE LAB AND DISCOVER THE WORLD',
-                'sous_titre' => 'PROJECTS ONLINE',
+                
+                'soustitre' => 'PROJECTS ONLINE',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..',
                 'icone_id' => 2,
                 'created_at' => now(),
             ],
             [
-                'titre' => '',
-                'sous_titre' => 'SMART MARKETING',
+                
+                'soustitre' => 'SMART MARKETING',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..',
                 'icone_id' => 3,
                 'created_at' => now(),
             ],
             [
-                'titre' => '',
-                'sous_titre' => 'SOCIAL MEDIA',
+                
+                'soustitre' => 'SOCIAL MEDIA',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..',
                 'icone_id' => 4,
                 'created_at' => now(),
             ],
             [
-                'titre' => '',
-                'sous_titre' => 'BRAINSTORMING',
+                
+                'soustitre' => 'BRAINSTORMING',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..',
                 'icone_id' => 5,
                 'created_at' => now(),
             ],
             [
-                'titre' => '',
-                'sous_titre' => 'DOCUMENTED',
+                
+                'soustitre' => 'DOCUMENTED',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..',
                 'icone_id' => 6,
                 'created_at' => now(),
             ],
             [
-                'titre' => '',
-                'sous_titre' => 'RESPONSIVE',
+                
+                'soustitre' => 'RESPONSIVE',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..',
                 'icone_id' => 7,
                 'created_at' => now(),
             ],
             [
-                'titre' => '',
-                'sous_titre' => 'RETINA READY',
+                
+                'soustitre' => 'RETINA READY',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..',
                 'icone_id' => 8,
                 'created_at' => now(),
             ],
             [
-                'titre' => '',
-                'sous_titre' => 'ULTRA MODERN',
+                
+                'soustitre' => 'ULTRA MODERN',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..',
                 'icone_id' => 1,
                 'created_at' => now(),

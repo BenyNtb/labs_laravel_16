@@ -15,10 +15,10 @@ class CreateCarouselsTable extends Migration
     {
         Schema::create('carousels', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('image');
-            $table->string('titre');
+            $table->string('img');
+            $table->string('titreIntro');
             $table->string('principal')->default(0);
+            $table->timestamps();
         });
     }
 

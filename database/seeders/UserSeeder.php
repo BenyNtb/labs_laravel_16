@@ -17,8 +17,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'nom' => 'Labs',
-                'prenom' => 'Admin',
+                'nom' => 'Admin',
                 'role_id' => 1,
                 'genre_id' => 2,
                 'poste_id' => 1,
@@ -29,8 +28,8 @@ class UserSeeder extends Seeder
                 'created_at'=> now(),
             ],
             [
-                'nom' => 'Labs',
-                'prenom' => 'Webmaster',
+
+                'nom' => 'Webmaster',
                 'role_id' => 2,
                 'genre_id' => 2,
                 'poste_id' => 2,
@@ -41,8 +40,8 @@ class UserSeeder extends Seeder
                 'created_at'=> now(),
             ],
             [
-                'nom' => 'Labs',
-                'prenom' => 'Redacteur',
+
+                'nom' => 'Redacteur',
                 'role_id' => 3,
                 'genre_id' => 1,
                 'poste_id' => 3,
@@ -53,8 +52,8 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
             ],
             [
-                'nom' => 'Labs',
-                'prenom' => 'Membre',
+
+                'nom' => 'Membre',
                 'role_id' => 4,
                 'poste_id' => 4,
                 'photo_id' => 4,

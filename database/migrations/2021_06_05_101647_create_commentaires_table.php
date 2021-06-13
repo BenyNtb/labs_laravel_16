@@ -15,6 +15,11 @@ class CreateCommentairesTable extends Migration
     {
         Schema::create('commentaires', function (Blueprint $table) {
             $table->id();
+            $table->string('email');
+            $table->string('auteur');
+            $table->text('message');
+            $table->integer('validate');
+            $table->unsignedBigInteger('blog_id')->constrained('blogs')->OnDelete('cascade');
             $table->timestamps();
         });
     }
