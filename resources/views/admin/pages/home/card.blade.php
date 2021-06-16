@@ -36,6 +36,9 @@
                 </div>
             </div>
             @endforeach
+            <div class="mt-3">
+                {{ $cards->links() }}
+            </div>
         </div>
     </div>
 </x-app-layout>

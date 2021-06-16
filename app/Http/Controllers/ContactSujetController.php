@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\ContactSujet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactSujetController extends Controller
 {
@@ -12,10 +14,7 @@ class ContactSujetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
+    
 
     /**
      * Show the form for creating a new resource.

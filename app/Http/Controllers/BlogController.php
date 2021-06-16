@@ -10,6 +10,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -124,16 +125,18 @@ class BlogController extends Controller
             "categorie_id" => ["required"],
         ]);
 
-        $request->file('image')->storePublicly('img/', 'public');
-        $blog->image = $request->file('image')->hashName();
-
         $blog->titre = $request->titre;
         $blog->description = $request->description;
         $blog->user_id = Auth::User()->id;
         $blog->categorie_id = $request->categorie_id;
         $blog->validate = 0;
+        if ($request->file('image') != null) {
+            Storage::disk('public')->delete('img/' . $blog->image);
 
-        $blog->save();
+            $request->file('image')->storePublicly('img/','public');
+            $blog->image =  $request->file('image')->hashName();
+            $blog->save();
+        }
 
         DB::table('blogtags')->where('post_id', $blog->id)->delete();
         foreach ($request->input('taglist') as $value) {
@@ -143,7 +146,7 @@ class BlogController extends Controller
             $tag->save();
         }
         
-        return redirect()->back()->with('success', 'Modifications enregistrées, en attente de validation');
+        return redirect()->route('blog.index')->with('success', 'Modifications enregistrées, en attente de validation');
     }
 
     /**

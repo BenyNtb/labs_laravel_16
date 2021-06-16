@@ -4,7 +4,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3 class="text-gray-600 text-center font-bold md:text-2xl text-xl">Edit page Contact</h3> 
-                    <form action="{{route('contact.update', $contact->id)}}" method="POST">
+                    <form action="{{route('contact.update', $contact)}}" method="POST">
                         @csrf
                         @method('PUT')
                         @include('layouts.flash')
@@ -46,8 +46,8 @@
                             <div class="col m-2 bg-gray-300">
                                 <div class="col md:flex">
                                     <div class="w-full md:w-2/4 ">
-                                    <label for="adresse">Adresse</label><br/>
-                                    <input type="text" name="adresse" value="{{$contact->adresse}}" class="w-full" />
+                                    <label for="adresse1">Adresse</label><br/>
+                                    <input type="text" name="adresse1" value="{{$contact->adresse1}}" class="w-full" />
                                     <br/>
                                     @error('adresse')
                                         <span class="text-red-500">{{$message}}</span>
@@ -65,8 +65,8 @@
                                         <br/>
                                         </div>
                                 <div class="w-fulll md:w-2/4">
-                                    <label for="tel">Tel</label><br/>
-                                    <input type="text" name="tel" value="{{$contact->tel}}" class="w-full" />
+                                    <label for="telephone">Tel</label><br/>
+                                    <input type="text" name="telephone" value="{{$contact->telephone}}" class="w-full" />
                                     <br/>
                                     @error('tel')
                                         <span class="text-red-500">{{$message}}</span>
@@ -74,8 +74,8 @@
                                     <br/>
                                 </div>
                                 <div class="w-fulll md:w-2/4">
-                                    <label for="email">Email</label><br/>
-                                    <input type="email" name="email" value="{{$contact->email}}" class="w-full" />
+                                    <label for="mail">Email</label><br/>
+                                    <input type="mail" name="mail" value="{{$contact->mail}}" class="w-full" />
                                     <br/>
                                     @error('email')
                                         <span class="text-red-500">{{$message}}</span>

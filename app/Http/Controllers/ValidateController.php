@@ -12,15 +12,36 @@ use Illuminate\Support\Facades\Mail;
 
 class ValidateController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $roles = Role::all();
         $commentaires = Commentaire::where('validate', 0)->get();
-        $articles = Blog::where('validate', 0)->where('trash', 0)->get();
+        $posts = Blog::where('validate', 0)->where('trash', 0)->get();
         $users = User::where('validate', 0)->get();
-        
-        return view('admin.pages.validate', compact('roles','commentaires','articles', 'users'));
+        return view('admin.pages.validate', compact('roles', 'commentaires', 'posts', 'users'));
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUser(User $id)
+    {
+        $user = $id;
+        $user->validate = 1;
+        $user->save();
+
+        Mail::to($user->email)->send(new RegisterSender($user));
+
+        return redirect()->back()->with('success', 'Membre validé');
+    }
+
     public function updateCommentaire(Commentaire $id)
     {
         $commentaire = $id;
@@ -49,15 +70,5 @@ class ValidateController extends Controller
         $post->validate = 1;
         $post->save();
         return redirect()->back()->with('success', 'Article validé');
-    }
-    public function updateUser(User $id)
-    {
-        $user = $id;
-        $user->validate = 1;
-        $user->save();
-
-        Mail::to($user->email)->send(new RegisterSender($user));
-
-        return redirect()->back()->with('success', 'Membre validé');
     }
 }

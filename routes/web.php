@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AllController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\MailContactController;
 use App\Http\Controllers\NewsletterController;
@@ -10,10 +12,12 @@ use App\Http\Controllers\ServicehomeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ValidateController;
 use App\Http\Controllers\VideoController;
 use App\Models\Discover;
 use App\Models\Icone;
 use App\Models\Logo;
+use App\Models\Role;
 use App\Models\Service;
 use App\Models\Team;
 use App\Models\Testimonials;
@@ -59,18 +63,18 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/admin/update/discover/titre/{id}', [DiscoverController::class, 'updatetitre'])->name('homediscovertitre.update');
         // CRUD PAGE HOME
         Route::get('home/card', function () {
-            $cards = Service::all();
+            $cards = Service::paginate(3);
             $icones = Logo::all();
             return view('admin/pages/home/card', compact('cards', 'icones'));
         })->name('homecard.index');
-        Route::get('home/card/edit/{id}', [ServicehomeController::class,'edit'])->name('homecard.edit');
+        Route::get('home/card/edit/{id}', [ServicehomeController::class, 'edit'])->name('homecard.edit');
         Route::put('/admin/update/card/{id}', [ServicehomeController::class, 'update'])->name('homecard.update');
         // Discover
         // Route::resource('/admin/discover', DiscoverController::class);
         Route::get('/admin/index/discover', [DiscoverController::class, 'index'])->name('homediscover.index');
         Route::get('/admin/edit/discover/{id}', [DiscoverController::class, 'edit'])->name('homediscover.edit');
         Route::put('/admin/update/discover/{id}', [DiscoverController::class, 'update'])->name('homediscover.update');
-        
+
 
         // Video
         Route::get('/admin/index/video', [VideoController::class, 'index'])->name('video.index');
@@ -85,62 +89,68 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/edit/testimonials/{testimonials}', [TestimonialsController::class, 'destroy'])->name('testimonials.destroy');
 
 
-         // Newsletter 
+        // Newsletter 
         // Route::resource('/admin/newsletter', NewsletterController::class);
-        Route::get('/admin/newsletter', [NewsletterController::class, 'index'])->name
-        ('newsletter.index');
+        Route::get('/admin/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
+        Route::post('homes/newsletter', [NewsletterController::class, "store"])->name('newsletter');
 
         // Ready
-        // Route::get('/admin/ready', [ReadyController::class, 'index'])->name('ready.index');
-        // Route::get('/admin/ready/{ready}/edit', [ReadyController::class, 'edit'])->name('ready.edit');
-        // Route::get('/admin/ready/{ready}/update', [ReadyController::class, 'update'])->name('ready.update');
-        
+        Route::get('/admin/role', [RoleController::class, 'index'])->name('role.index');
+        Route::get('/admin/role/{role}/edit', [RoleController::class, 'edit'])->name('role.edit');
+        Route::get('/admin/role/{role}/update', [RoleController::class, 'update'])->name('role.update');
+
         // Contact
-        // Route::get('/admin/contact', [ContactController::class, 'index'])->name('contact.index');
-        // Route::get('/admin/contact/{contact}/edit', [ContactController::class, 'edit'])->name('contact.edit');
-        // Route::get('/admin/contact/{contact}/update', [ContactController::class, 'update'])->name('contact.update');
+        Route::get('/admin/contact', [ContactController::class, 'index'])->name('contact.index');
+        Route::get('/admin/contact/edit/{contact}', [ContactController::class, 'edit'])->name('contact.edit');
+        Route::put('/admin/contact/update/{contact}', [ContactController::class, 'update'])->name('contact.update');
 
         // Blog
         // Route::resource('/admin/blog', BlogController::class);
-        
+        Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('blog.create');
+        Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('blog.store');
+        Route::get('/admin/blog', [BlogController::class, 'index'])->name('blog.index');
+        Route::get('/admin/blog/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
+        Route::put('/admin/blog/update/{blog}', [BlogController::class, 'update'])->name('blog.update');
+        Route::delete('/admin/blog/{id}/delete', [BlogController::class, 'destroy'])->name('blog.destroy');
+
         // Validate
-        // Route::get('/admin/validate', [ValidateController::class, 'index'])->name('validate.index');
+        Route::get('/admin/validate', [ValidateController::class, 'index'])->name('validate.index');
         // Valider un membre
-        // Route::put('/admin/validation/member/update/{id}', [ValidateController::class, 'updateUser'])->name('validateUserUpdate');
+        Route::put('/admin/validation/member/update/{id}', [ValidateController::class, 'updateUser'])->name('validateUserUpdate');
         // Supprimer un membre non-validé
-        // Route::delete('/admin/validate/user/{id}/delete', [ValidateController::class,'deleteUser'])->name('validateDeleteUser');
+        Route::delete('/admin/validate/user/{id}/delete', [ValidateController::class,'deleteUser'])->name('validateDeleteUser');
 
         // Article
-        // Route::put('/admin/validate/update/{id}', [ValidateController::class, 'updateArticle'])->name('validateUpdateArticle');
+        Route::put('/admin/validate/update/{id}', [ValidateController::class, 'updateArticle'])->name('validateUpdateArticle');
         // Article corbeille
-        // Route::put('/admin/trash/article/{id}/', [TrashController::class,'trashArticle'])->name('trashArticle');
+        Route::put('/admin/trash/article/{id}/', [TrashController::class,'trashArticle'])->name('trashArticle');
         // Recup article corbeille
-        // Route::put('/admin/recup/article/{id}/', [TrashController::class,'recupArticle'])->name('recupArticle');
+        Route::put('/admin/recup/article/{id}/', [TrashController::class,'recupArticle'])->name('recupArticle');
 
         // Commentaires
-        // Route::post('/blog/article/{id}/comment', [CommentController::class, "store"])->name('commentStore');
+        Route::post('/blog/article/{id}/comment', [CommentController::class, "store"])->name('commentStore');
         // Validation  commentaire
-        // Route::put('/admin/validation/update/{id}', [CommentController::class, 'update'])->name('commentUpdate');
+        Route::put('/admin/validation/update/{id}', [CommentController::class, 'update'])->name('commentUpdate');
         // Supprimer un commentaire non-validé
-        // Route::delete('/admin/validate/comment/{id}/delete', [ValidateController::class,'deleteComment'])->name('validateDeleteComment');
+        Route::delete('/admin/validate/comment/{id}/delete', [ValidateController::class,'deleteComment'])->name('validateDeleteComment');
 
     });
-        Route::resource('/admin/user', UserController::class)->middleware('admin');
+    Route::resource('/admin/user', UserController::class)->middleware('admin');
 });
 Route::put('admin/user/{user}/edit', [UserController::class, 'updateMembre'])->name('membre.update');
 
 // Admin - TRASH
-// Route::get('/admin/trash', [TrashController::class, 'index'])->middleware(['webmaster'])->name('trash.index');
+Route::get('/admin/trash', [TrashController::class, 'index'])->middleware(['webmaster'])->name('trash.index');
 // Supprimer un article de la corbeille définitivement
-// Route::delete('/admin/trash/article/{id}/delete', [TrashController::class,'deleteArticle'])->name('deleteArticle');
+Route::delete('/admin/trash/article/{id}/delete', [TrashController::class,'deleteArticle'])->name('deleteArticle');
 
 // CRUD Blog Redacteur
-// Route::middleware(['redacteur'])->group(function () {
-//     Route::get('/admin/blog/index', [BlogController::class, 'index'])->name('blog.index');
-//     Route::get('/admin/blog/show/{article}', [BlogController::class, 'show'])->name('blog.show'); 
-//     Route::get('/admin/blog/edit/{article}', [BlogController::class, 'edit'])->name('blog.edit'); 
-//     Route::post('/admin/blog/update/{article}', [BlogController::class,'update'])->name('blog.update');
-// }); 
+Route::middleware(['redacteur'])->group(function () {
+    Route::get('/admin/blog/index', [BlogController::class, 'index'])->name('blog.index');
+    Route::get('/admin/blog/show/{article}', [BlogController::class, 'show'])->name('blog.show'); 
+    Route::get('/admin/blog/edit/{article}', [BlogController::class, 'edit'])->name('blog.edit'); 
+    Route::post('/admin/blog/update/{article}', [BlogController::class,'update'])->name('blog.update');
+}); 
 
 
 // Auth
@@ -150,4 +160,4 @@ Route::get('/back', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

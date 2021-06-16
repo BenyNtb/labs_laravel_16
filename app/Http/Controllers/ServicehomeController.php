@@ -12,7 +12,7 @@ class ServicehomeController extends Controller
     public function index()
     {
     $this->authorize('webmaster', Auth::user());
-    $services = Service::all();
+    $services = Service::paginate(3);
     $icones = Icone::all();    
     return view('admin.pages.home.services.index', compact('services', 'icones'));
     }

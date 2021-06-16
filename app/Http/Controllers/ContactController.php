@@ -17,9 +17,9 @@ class ContactController extends Controller
     public function index()
     {
         $this->authorize('webmaster', Auth::user()); 
-        $contact = Contact::all();
+        $contacts = Contact::all();
         $sujets = ContactSujet::all();
-        return view('admin.contact.index', compact('contact', 'sujets'));
+        return view('admin.contact.index', compact('contacts', 'sujets'));
     }
 
     /**
@@ -76,17 +76,30 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         $this->authorize('webmaster', Auth::user()); 
-        $contact = Contact::first(); 
-
-        foreach($request->all() as $key => $value) {
-            if(($key != "_token") && ($key != "_method")){
-                $contact->$key = $value; 
-            }
-        }
-
+        request()->validate([
+            "position"=> ["required", "min:3"],
+            "titre"=> ["required", "min:3"],
+            "description"=> ["required", "min:5"],
+            "soustitre"=> ["required", "min:3"],
+            "adresse1"=> ["required", "min:3"],
+            "adresse2"=> ["required", "min:3"],
+            "telephone"=> ["required", "min:3"],
+            "mail"=> ["required", "min:3"],
+            "footer"=> ["required", "min:3"],
+        ]);
+        $contact->position = $request->position;
+        $contact->titre = $request->titre;
+        $contact->description = $request->description;
+        $contact->soustitre = $request->soustitre;
+        $contact->adresse1 = $request->adresse1;
+        $contact->adresse2 = $request->adresse2;
+        $contact->telephone = $request->telephone;
+        $contact->mail = $request->mail;
+        $contact->footer = $request->footer;
         $contact->save();
 
-        return redirect()->back()->with('success', 'Page contact a été actualisée');
+
+        return redirect()->route('contact.index')->with('success', 'Page contact a été actualisée');
     }
 
     /**

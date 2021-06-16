@@ -11,14 +11,15 @@ class RegisterSender extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $mail;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($request)
     {
-        //
+        $this->mail = $request;
     }
 
     /**
@@ -28,6 +29,6 @@ class RegisterSender extends Mailable
      */
     public function build()
     {
-        return $this->from("b.ntambwe97@gmail.com")->markdown('mail.validate')->subject('Compte validé');
+        return $this->from("b.ntambwe97@gmail.com")->markdown('mail.validate')->subject('Compte inscrit');
     }
 }

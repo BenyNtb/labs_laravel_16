@@ -37,8 +37,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin', Auth::user()); 
-        $roles = Role::all(); 
+        $this->authorize('admin', Auth::user());
+        $roles = Role::all();
         $postes = Poste::all();
         $genres = Genre::all();
         return view('admin.user.create', compact('roles', 'postes', 'genres'));
@@ -52,16 +52,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('admin', Auth::user()); 
+        $this->authorize('admin', Auth::user());
         $request->validate([
-            "nom" => "required",  
+            "nom" => "required",
             "email" => "required",
             "img" => "required",
         ]);
-        $user = new User(); 
-        $user->nom = $request->nom; 
-        $user->email = $request->email; 
-        $user->role_id = $request->role; 
+        $user = new User();
+        $user->nom = $request->nom;
+        $user->email = $request->email;
+        $user->role_id = $request->role;
         $user->poste_id = $request->poste;
         $user->genre_id = $request->genre;
 
@@ -69,8 +69,8 @@ class UserController extends Controller
         $user->img = $request->file('img')->hashName();
 
         $user->password = Hash::make('user2021');
-        $user->save(); 
-        return redirect()->back()->with('success', "Utilisateur a été ajouté"); 
+        $user->save();
+        return redirect()->back()->with('success', "Utilisateur a été ajouté");
     }
 
     /**
@@ -124,7 +124,7 @@ class UserController extends Controller
             $user->save();
             return redirect()->back()->with('success', 'Profil bien modifié');
         }
-}
+    }
     public function updateMembre(User $user, Request $request)
     {
         $this->authorize('user', $user);
@@ -155,4 +155,3 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('warning', 'Utilisateur bien supprimé');
     }
 }
-
