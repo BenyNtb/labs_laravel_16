@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RegisterSender;
 use App\Models\Blog;
 use App\Models\Commentaire;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ValidateController extends Controller
 {
@@ -47,5 +49,15 @@ class ValidateController extends Controller
         $post->validate = 1;
         $post->save();
         return redirect()->back()->with('success', 'Article validé');
+    }
+    public function updateUser(User $id)
+    {
+        $user = $id;
+        $user->validate = 1;
+        $user->save();
+
+        Mail::to($user->email)->send(new RegisterSender($user));
+
+        return redirect()->back()->with('success', 'Membre validé');
     }
 }

@@ -3,7 +3,7 @@
     <div class="content" >
         <a href="{{route('video.index')}}">Retour à Video</a>
         <div class="grid mt-8  gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-2">
-            <form method="POST" action="{{route('video.update', $video->id)}}">
+            <form method="POST" action="{{route('video.update', $video)}}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="flex flex-col">
@@ -12,7 +12,7 @@
                             <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
                             </div>
                             <div class="flex-auto ml-3 justify-evenly py-2">
-                                <input id="image" name="image" value="{{$video->image}}" class="border border-gray-400 p-2 rounded-lg" x-model="currentColor">
+                                <input id="image" name="image" class="border border-gray-400 p-2 rounded-lg" x-model="currentColor" type="file">
                                     @error('image')
                                     <span class="invalid-feedback"><strong>{{$message}}</strong></span>
                                     @enderror

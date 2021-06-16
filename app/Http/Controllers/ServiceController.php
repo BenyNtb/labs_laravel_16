@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Icone;
 use App\Models\Service;
+use App\Models\Titre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,9 +17,9 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $this->authorize('webmaster', Auth::user());
-        $services = Service::paginate(6)->fragment('servicePaginate');
-        return view('admin.pages.home.services', compact('services'));
+        $this->authorize('webmaster', Auth::user()); 
+        $services = Service::paginate(6)->fragment('servicePaginate'); 
+        return view('admin.services.index', compact('services')); 
     }
 
     /**
@@ -26,43 +27,42 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.services.create');
-    }
-
+    // public function create()
+    // {
+    //     return view('admin.services.create'); 
+    // }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Service $service)
-    {
-        // $this->authorize('webmaster', Auth::user());
+    // public function store(Request $request, Service $cards)
+    // {
+    //     $this->authorize('webmaster', Auth::user()); 
 
-        // $request->validate([
-        //     "icone" => "required",
-        //     "soustitre" => "required",
-        //     "description" => "required|max:200"
-        // ]);
-        // $service->icone = $request->icone; 
-        // $service->soustitre = $request->soustitre; 
-        // $service->description = $request->description; 
-        // $service->save();
-        // return redirect()->route('services.index')->with('success', 'Modification Service effectuée avec succès !'); 
-    }
-
+    //     $request->validate([
+    //         "icone" => "required",
+    //         "soustitre" => "required", 
+    //         "description" => "required|max:200"
+    //     ]); 
+    //     $cards->icone = $request->icone; 
+    //     $cards->soustitre = $request->soustitre; 
+    //     $cards->description = $request->description; 
+    //     $cards->save();
+    //     return redirect()->route('homecard.index')->with('success', 'Service modifié avec succès'); 
+    // }
+    
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
-    {
-        //
-    }
+    // public function show(Service $service)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -70,12 +70,11 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $id)
+    public function edit(Service $service)
     {
-        $cards = $id;
-        $icones = Icone::all();
-        $this->authorize('webmaster', Auth::user()); 
-        return view('admin.pages.home.editCard', compact('cards', 'icones')); 
+        $this->authorize('webmaster', Auth::user());
+        $icones = Icone::all(); 
+        return view('admin.services.edit', compact('service', 'icones')); 
     }
 
     /**
@@ -85,7 +84,7 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Service $cards)
     {
         $this->authorize('webmaster', Auth::user()); 
 
@@ -94,13 +93,11 @@ class ServiceController extends Controller
             "soustitre" => "required", 
             "description" => "required|max:200"
         ]);
-        $service->icone_id  = $request->icone; 
-        $service->titre = '';
-        $service->sous_titre = $request->soustitre; 
-        $service->description = $request->description; 
-        $service->save(); 
-
-        return redirect()->route('services.index')->with('success', 'Modification Service effectuée avec succès !');
+        $cards->icone  = $request->icone; 
+        $cards->soustitre = $request->soustitre; 
+        $cards->description = $request->description; 
+        $cards->save(); 
+        return redirect()->route('service.index')->with('success', 'Service modifié avec succès'); 
     }
 
     /**
@@ -109,10 +106,10 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
-    {
-        $this->authorize('webmaster', Auth::user());
-        $service->delete();
-        return redirect()->route('services.index')->with('success', 'Service bien supprimé'); 
-    }
+    // public function destroy(Service $service)
+    // {
+    //     $this->authorize('webmaster', Auth::user());
+    //     $service->delete();
+    //     return redirect()->route('service.index')->with('success', 'Service supprimé succès'); 
+    // }
 }

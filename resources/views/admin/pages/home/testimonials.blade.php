@@ -18,9 +18,11 @@
                     <div class="flex p-4 pb-2 border-t border-gray-200 "></div>
                     <div class="flex space-x-3 text-sm font-medium">
                 
-                        <a href="{{route('testimonials.edit', $testimonial->id)}}"
-                            class="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
-                            type="button" aria-label="like">Edit Testimonials</a>
+                        <form method="POST" action={{route('testimonials.destroy', $testimonial->id)}}>
+                            @csrf
+                        @method('DELETE')
+                        <button type="submit" class="mb-2 md:mb-0 bg-gray-900 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-red-700">Delete Testimonials</button>
+                        </form>    
                     </div>
 
                 </div>

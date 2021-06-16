@@ -13,7 +13,7 @@
                         <div class="icon">
                             <i class="flaticon-023-flask"></i>
                         </div>
-                        <h2>{{$service->sous_titre}}</h2>
+                        <h2>{{$service->soustitre}}</h2>
                         <p>{{$service->description}}</p>
                     </div>
                 </div>
@@ -32,10 +32,10 @@
             <div class="section-title">
                 <h2>
                     @php
-                    $titre1 = str_replace('(', '<span>', $titres[0]->discover);
-                    $titre2 = str_replace(')', '</span>', $titre1);
-                    echo $titre2;
-                    @endphp
+                $titre1 = str_replace('(', '<span>', $titres[0]->service);
+                $titre2 = str_replace(')', '</span>', $titre1);
+                echo $titre2;
+                @endphp
                 </h2>
             </div>
             <div class="row">

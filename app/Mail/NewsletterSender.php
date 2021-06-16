@@ -29,6 +29,6 @@ class NewsletterSender extends Mailable
      */
     public function build()
     {
-        return $this->from($this->mail->mail)->markdown('mail.newsletter')->subject('Newsletter::');
+        return $this->from($this->mail->mail)->markdown('mail.newsletter')->subject('Newsletter:');
     }
 }

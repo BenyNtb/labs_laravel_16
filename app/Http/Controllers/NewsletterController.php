@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\NewsletterSender;
 use App\Models\Newsletter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
@@ -16,7 +17,10 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('webmaster', Auth::user());
+
+        $news = Newsletter::all();
+        return view('admin.newsletter.index', compact('news'));
     }
 
     /**
@@ -39,7 +43,7 @@ class NewsletterController extends Controller
     {
         if ($request->has('newsletterStore')) {
             $request->validate([
-                "mail" => ["required", "string", "email","max:255"],
+                "mail" => ["required", "string", "email", "max:255"],
             ]);
             $newsletter = Newsletter::create([
                 "mail" => $request->mail,

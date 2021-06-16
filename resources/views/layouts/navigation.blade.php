@@ -25,6 +25,7 @@
                             </a>
                         </div>
                     </li>
+                    @Webmaster
                     <li class="p-4 w-full flex relative shadow-sm">
                         <div class="flex-auto my-1">
                             <span class="text-white font-medium">Accueil</span>
@@ -55,31 +56,33 @@
                             </svg>
                         </div>
                         <div class="flex-auto my-1">
-                            <a href="{{ route('homecard.index') }}">
-                            <span>Home
-                                <li class="ml-14">
-                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('homecard.index') }}">Cards
-                                </li>
-                                <li class="ml-14">
-                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('homediscover.index') }}">Discover
-                                </li>
-                                <li class="ml-14">
-                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('video.index') }}">Video
-                                </li>
-                                <li class="ml-14">
-                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('testimonials.index') }}">Testimonials
-                                </li>
-                                <li class="ml-14">
-                                    <a class="text-gray-100 hover:text-black hover:font-bold" href="{{ route('service.index') }}">Services
-                                </li>
-                                <li class="ml-14">
-                                    <a class="text-gray-100 hover:text-black hover:font-bold"  href="{{ route('team.index') }}">Team
-                                </li>
-                            </span>
+                                <span>Home
+                                    <li class="ml-14">
+                                        <a class="text-gray-100 hover:text-black hover:font-bold"
+                                            href="{{ route('homecard.index') }}">Cards
+                                    </li>
+                                    <li class="ml-14">
+                                        <a class="text-gray-100 hover:text-black hover:font-bold"
+                                            href="{{ route('homediscover.index') }}">Discover
+                                    </li>
+                                    <li class="ml-14">
+                                        <a class="text-gray-100 hover:text-black hover:font-bold"
+                                            href="{{ route('video.index') }}">Video
+                                    </li>
+                                     <li class="ml-14">
+                                        <a class="text-gray-100 hover:text-black hover:font-bold"
+                                            href="{{ route('titre.index') }}">Titres
+                                    </li>
+                                    <li class="ml-14">
+                                        <a class="text-gray-100 hover:text-black hover:font-bold"
+                                            href="{{ route('testimonials.index') }}">Testimonials
+                                    </li>
+                                </span>
 
                             </a>
 
                         </div>
+                        @endWebmaster
                     </div>
 
                     <div class="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
@@ -91,7 +94,10 @@
                             </svg>
                         </div>
                         <div class="flex-auto my-1">
-                            <span>Services</span>
+                            <a href="{{ route('service.index') }}">
+                                <span>Services</span>
+                            </a>
+                        
                         </div>
                     </div>
 
@@ -103,9 +109,12 @@
                                 </path>
                             </svg>
                         </div>
-                        <div class="flex-auto my-1">
-                            <span>Blog</span>
-                        </div>
+                        {{-- <div class="flex-auto my-1">
+                            <a href="{{route('blog.index')}}">
+                                <span>Blog</span>
+                            </a>
+                        
+                        </div> --}}
                     </div>
 
                     <div class="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
@@ -117,7 +126,10 @@
                             </svg>
                         </div>
                         <div class="flex-auto my-1">
-                            <span>Newsletter</span>
+                            <a href="{{ route('newsletter.index') }}">
+                                <span>Newsletter</span>
+                            </a>
+                        
                         </div>
                     </div>
 

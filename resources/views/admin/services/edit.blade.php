@@ -14,11 +14,12 @@
                                 <label class="font-bold" for="icone">Icone </label>
                             </div> 
                             
-                            <input class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" name="icone" value="{{$service->icone}}"/>
-                            @error('icone')
-                                <span class="text-red-500 font-bold">{{$message}}</span> 
-                            @enderror
-                            </div>
+                            <select name="icone_id" id="icone_id">
+                                @foreach ($icones as $icone)
+                                    <option value="{{$icone->id}}">{{$icone->class}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="mt-4 flex flex-col md:w-2/6">
                             <label class="font-bold" for="soustitre">Titre</label>
                             <input class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" name="soustitre" value="{{$service->soustitre}}" />

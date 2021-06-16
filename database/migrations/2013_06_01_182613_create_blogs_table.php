@@ -20,6 +20,9 @@ class CreateBlogsTable extends Migration
             $table->text('description', 318);
             $table->unsignedBigInteger('categorie_id');
             $table->foreign('categorie_id')->references('id')->on('categories');
+            $table->boolean('validate');
+            $table->boolean('trash');
+            $table->foreignId('user_id')->constrained()->OnDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ class CreateBlogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article_blogs');
+        Schema::dropIfExists('blogs');
     }
 }

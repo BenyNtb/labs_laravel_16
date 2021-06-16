@@ -12,28 +12,31 @@
                             <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
                             </div>
                             <div class="flex-auto ml-3 justify-evenly py-2">
-                                <select name="icone" id="icone">
+                                <select name="icone_id" id="icone_id">
                                     @foreach ($icones as $icone)
                                         <option value="{{$icone->id}}">{{$icone->class}}</option>
                                     @endforeach
                                 </select>
-                                @error('icone')
+                                {{-- @error('icone')
                                     <span class="invalid-feedback"><strong>{{$message}}</strong></span>
-                                @enderror
+                                @enderror --}}
                                 <div class="flex flex-wrap ">
+                                    {{-- <label class="font-bold" for="titre">Titre</label>
                                     <input id="titre" name="titre" value="{{$cards->titre}}" class="border border-gray-400 p-2 rounded-lg" x-model="currentColor">
                                     @error('titre')
                                     <span class="invalid-feedback"><strong>{{$message}}</strong></span>
-                                    @enderror
+                                    @enderror --}}
 
                                     <div class="w-full flex-none font-medium ">
-                                        <input id="soustitre" name="soustitre" value="{{$cards->sous_titre}}" class="border border-gray-400 p-2 rounded-lg" x-model="currentColor">
+                                        <label class="font-bold" for="soustitre">Sous titre</label>
+                                        <input id="soustitre" name="soustitre" value="{{$cards->soustitre}}" class="border border-gray-400 p-2 rounded-lg" x-model="currentColor">
                                         @error('soustitre')
                                         <span class="invalid-feedback"><strong>{{$message}}</strong></span>
                                         @enderror
                                     </div>
 
                                     <h2 class="flex-auto text-lg font-medium">
+                                        <label class="font-bold" for="description">Description</label>
                                         <input id="description" name="description" value="{{$cards->description}}" class="border border-gray-400 p-2 rounded-lg" x-model="currentColor">
                                         @error('description')
                                         <span class="invalid-feedback"><strong>{{$message}}</strong></span>

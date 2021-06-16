@@ -13,10 +13,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Models\Discover;
 use App\Models\Icone;
+use App\Models\Logo;
 use App\Models\Service;
 use App\Models\Team;
 use App\Models\Testimonials;
 use App\Models\Titre;
+use App\Models\User;
 use App\Models\Video;
 use Illuminate\Support\Facades\Route;
 
@@ -32,125 +34,120 @@ use Illuminate\Support\Facades\Route;
 */
 
 // F R O N T E N D 
-
 Route::get('/', [AllController::class, 'home'])->name('home');
-Route::get('/services', [Allcontroller::class, 'services'])->name('services');
-Route::get('/contact', [Allcontroller::class, 'contact'])->name('contact');
-Route::get('/blog', [Allcontroller::class, 'blog'])->name('blog');
-Route::get('/blog-post', [Allcontroller::class, 'blogpost'])->name('blog-post');
+Route::get('/services', [AllController::class, 'services'])->name('services');
+Route::get('/blog', [AllController::class, 'blog'])->name('blog');
+Route::get('/blog-post', [AllController::class, 'blogp'])->name('blog-post');
+// Route::get('/blog/post/{id}', [AllController::class, 'showpost'])->name('blog.show');
+Route::get('/contact', [AllController::class, 'contact'])->name('contact');
 
+// Search
+Route::get('/blog/search/', [AllController::class, 'search'])->name('blog.search');
 
-//B A C K E N D 
-
-//Dashboard
-
-// Route::get('/admin', function () {
-//     return view('/admin/dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
-//User
-
-// Route::resource('/admin/user', UserController::class)->middleware('admin');
-Route::get('/admin/user', [UserController::class, 'index'])->name('user.index');
-Route::get('/admin/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-Route::delete('/admin/user/{id}/delete', [UserController::class, 'destroy'])->name('user.destroy');
-//Role
-Route::put('/update/role/{id}/edit', [RoleController::class, 'update'])->name('role.update');
-
-//Profile
-
-Route::get('/admin/profil', [UserController::class, 'index'])->name('profil.index');
-
-//Home
-
-Route::get('/admin/home', [UserController::class, 'index'])->name('home.index');
-Route::get('/admin/home/{id}/edit', [UserController::class, 'edit'])->name('home.edit');
-
-//Service Home
-
-Route::get('/admin/home/services', [ServicehomeController::class, 'index'])->name('homeservice.index');
-Route::get('/admin/services/{id}/delete', [ServicehomeController::class, 'destroy'])->name('services.destroy');
-Route::put('/update/services/{id}/edit', [ServicehomeController::class, 'update'])->name('homeservice.update');
-
-//Mail
-
-Route::post('/mail', [MailContactController::class, 'store'])->name('mail');
+// Mail 
+Route::post('/mail', [MailcontactController::class, 'store'])->name('mail');
 Route::post('/mail/newsletter', [NewsletterController::class, 'store'])->name('newsletter');
 
-                                 // P A G E    H O M E
-    //Card
-Route::get('home/card', function(){
-    $cards = Service::all();
-    $icones = Icone::all();
-    return view('admin/pages/home/card', compact('cards', 'icones'));
-    
-})->name('homecard.index'); 
 
-// -----------------------------------------------------
+// b A C K E N D 
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['webmaster'])->group(function () {
+        // Titres
+        Route::get('/admin/index/titre', [DiscoverController::class, 'index'])->name('titre.index');
+        Route::get('/admin/index/titre', [DiscoverController::class, 'indexTitre'])->name('titre.index');
+        Route::get('/admin/edit/discover/titre/{id}', [DiscoverController::class, 'edittitre'])->name('homediscovertitre.edit');
+        Route::put('/admin/update/discover/titre/{id}', [DiscoverController::class, 'updatetitre'])->name('homediscovertitre.update');
+        // CRUD PAGE HOME
+        Route::get('home/card', function () {
+            $cards = Service::all();
+            $icones = Logo::all();
+            return view('admin/pages/home/card', compact('cards', 'icones'));
+        })->name('homecard.index');
+        Route::get('home/card/edit/{id}', [ServicehomeController::class,'edit'])->name('homecard.edit');
+        Route::put('/admin/update/card/{id}', [ServicehomeController::class, 'update'])->name('homecard.update');
+        // Discover
+        // Route::resource('/admin/discover', DiscoverController::class);
+        Route::get('/admin/index/discover', [DiscoverController::class, 'index'])->name('homediscover.index');
+        Route::get('/admin/edit/discover/{id}', [DiscoverController::class, 'edit'])->name('homediscover.edit');
+        Route::put('/admin/update/discover/{id}', [DiscoverController::class, 'update'])->name('homediscover.update');
+        
 
-//Service
-Route::get('home/services', function(){
-$services = Service::all();
-return view('admin/pages/home/services', compact('services'));
-})->name('services.index');
+        // Video
+        Route::get('/admin/index/video', [VideoController::class, 'index'])->name('video.index');
+        Route::get('/admin/edit/video/{video}', [VideoController::class, 'edit'])->name('video.edit');
+        Route::put('/admin/update/video/{video}', [VideoController::class, 'update'])->name('video.update');
 
-    //Edit || Update
-Route::get('pages/beny/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
-Route::put('pages/test/{id}/update', [ServiceController::class, 'update'])->name('service.update');
+        // Services 
+        Route::resource('/admin/service', ServiceController::class);
 
-// ---------------------------------------------------------------------
-    // Discover
-Route::get('home/discover', function(){
-    $discover = Titre::find(1);
-    $service = Titre::find(2);
-    $team = Titre::find(3);
-    $discovers = Discover::all();
-    return view('admin/pages/home/discover', compact('discover', 'service', 'team', 'discovers'));
-})->name('homediscover.index');
-    //Edit || Update
-Route::get('/admin/pages/home/{id}/edit', [DiscoverController::class, 'edit'])->name('discover.edit');
-Route::put('/admin/pages/home/{id}/update', [DiscoverController::class, 'update'])->name('discover.update');
-
-// ----------------------------------------------------------------------------
-
-    // Video
-Route::get('home/video', function(){
-    $videos = Video::all();
-    return view('admin/pages/home/video', compact('videos'));
-})->name('video.index');
-// Edit || Update
-Route::get('/admin/home/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
-Route::put('/admin/home/{id}/update', [VideoController::class, 'update'])->name('video.update');
-
-// ----------------------------------------
-    //Testimonials
-Route::get('home/testimonials', function(){
-    $testimonials = Testimonials::all();
-    return view('admin/pages/home/testimonials', compact('testimonials'));
-})->name('testimonials.index');
-// Edit || Update
-Route::get('home/testimonials/{id}/edit', [TestimonialsController::class, 'edit'])->name('testimonials.edit');
-Route::put('home/testimonials/{id}/update',[TestimonialsController::class, 'update'])->name('testimonials.update');
-
-// ------------------------------------------
+        // Testimonials: 
+        Route::get('/admin/index/testimonials', [TestimonialsController::class, 'index'])->name('testimonials.index');
+        Route::delete('/admin/edit/testimonials/{testimonials}', [TestimonialsController::class, 'destroy'])->name('testimonials.destroy');
 
 
-    //Team
-Route::get('home/team', function(){
-    $teams = Team::all();
-    return view('admin/pages/home/team', compact('teams'));
-})->name('team.index');
-// Edit || Update
-Route::get('home/test/team/{id}/edit', [TeamController::class, 'edit'])->name('team.edit');
-Route::put('home/team/{id}/update', [TeamController::class, 'update'])->name('team.update');
+         // Newsletter 
+        // Route::resource('/admin/newsletter', NewsletterController::class);
+        Route::get('/admin/newsletter', [NewsletterController::class, 'index'])->name
+        ('newsletter.index');
+
+        // Ready
+        // Route::get('/admin/ready', [ReadyController::class, 'index'])->name('ready.index');
+        // Route::get('/admin/ready/{ready}/edit', [ReadyController::class, 'edit'])->name('ready.edit');
+        // Route::get('/admin/ready/{ready}/update', [ReadyController::class, 'update'])->name('ready.update');
+        
+        // Contact
+        // Route::get('/admin/contact', [ContactController::class, 'index'])->name('contact.index');
+        // Route::get('/admin/contact/{contact}/edit', [ContactController::class, 'edit'])->name('contact.edit');
+        // Route::get('/admin/contact/{contact}/update', [ContactController::class, 'update'])->name('contact.update');
+
+        // Blog
+        // Route::resource('/admin/blog', BlogController::class);
+        
+        // Validate
+        // Route::get('/admin/validate', [ValidateController::class, 'index'])->name('validate.index');
+        // Valider un membre
+        // Route::put('/admin/validation/member/update/{id}', [ValidateController::class, 'updateUser'])->name('validateUserUpdate');
+        // Supprimer un membre non-validé
+        // Route::delete('/admin/validate/user/{id}/delete', [ValidateController::class,'deleteUser'])->name('validateDeleteUser');
+
+        // Article
+        // Route::put('/admin/validate/update/{id}', [ValidateController::class, 'updateArticle'])->name('validateUpdateArticle');
+        // Article corbeille
+        // Route::put('/admin/trash/article/{id}/', [TrashController::class,'trashArticle'])->name('trashArticle');
+        // Recup article corbeille
+        // Route::put('/admin/recup/article/{id}/', [TrashController::class,'recupArticle'])->name('recupArticle');
+
+        // Commentaires
+        // Route::post('/blog/article/{id}/comment', [CommentController::class, "store"])->name('commentStore');
+        // Validation  commentaire
+        // Route::put('/admin/validation/update/{id}', [CommentController::class, 'update'])->name('commentUpdate');
+        // Supprimer un commentaire non-validé
+        // Route::delete('/admin/validate/comment/{id}/delete', [ValidateController::class,'deleteComment'])->name('validateDeleteComment');
+
+    });
+        Route::resource('/admin/user', UserController::class)->middleware('admin');
+});
+Route::put('admin/user/{user}/edit', [UserController::class, 'updateMembre'])->name('membre.update');
+
+// Admin - TRASH
+// Route::get('/admin/trash', [TrashController::class, 'index'])->middleware(['webmaster'])->name('trash.index');
+// Supprimer un article de la corbeille définitivement
+// Route::delete('/admin/trash/article/{id}/delete', [TrashController::class,'deleteArticle'])->name('deleteArticle');
+
+// CRUD Blog Redacteur
+// Route::middleware(['redacteur'])->group(function () {
+//     Route::get('/admin/blog/index', [BlogController::class, 'index'])->name('blog.index');
+//     Route::get('/admin/blog/show/{article}', [BlogController::class, 'show'])->name('blog.show'); 
+//     Route::get('/admin/blog/edit/{article}', [BlogController::class, 'edit'])->name('blog.edit'); 
+//     Route::post('/admin/blog/update/{article}', [BlogController::class,'update'])->name('blog.update');
+// }); 
+
 
 // Auth
-Route::get('labslogin', function () {
-    return view('/admin/dashboard');
+Route::get('/back', function () {
+    $user = User::all();
+    return view('/admin/dashboard', compact('user'));
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('labsregister', function () {
-    return view('/admin/welcome');
-})->middleware(['auth'])->name('registers');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

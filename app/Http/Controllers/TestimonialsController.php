@@ -63,7 +63,7 @@ class TestimonialsController extends Controller
     {
         $testimonials = $id;
         $this->authorize('webmaster', Auth::user());
-        return view('admin.pages.home.editDiscover', compact('testimonials'));
+        return view('admin.pages.home.editTestimonial', compact('testimonials'));
     }
 
     /**
@@ -78,12 +78,14 @@ class TestimonialsController extends Controller
         $this->authorize('webmaster', Auth::user());
 
         $request->validate([
-            "soustitre" => "required",
-            "description" => "required|max:200"
+            "nom" => "required",
+            "avis" => "required",
+            "photo" => "required"
         ]);
-        $$testimonials->nom = $request->nom;
-        $$testimonials->avis = $request->avis;
-        $$testimonials->save();
+        $testimonials->nom = $request->nom;
+        $testimonials->avis = $request->avis;
+        $testimonials->photo = $request->photo;
+        $testimonials->save();
 
         return redirect()->route('testimonials.index')->with('success', 'Modification Service effectuée avec succès !');
     }
@@ -96,6 +98,7 @@ class TestimonialsController extends Controller
      */
     public function destroy(Testimonials $testimonials)
     {
-        //
+        $testimonials->delete();
+        return redirect()->back()->with('success', 'Testimonials supprimé');
     }
 }

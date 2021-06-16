@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
@@ -16,8 +17,8 @@ class VideoController extends Controller
     public function index()
     {
         $this->authorize('webmaster', Auth::user());
-        $video = Video::all();
-        return view('admin.pages.home.video', compact('video'));
+        $videos = Video::all();
+        return view('admin.pages.home.video', compact('videos'));
     }
 
     /**
@@ -68,11 +69,10 @@ class VideoController extends Controller
      * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function edit(Video $id)
+    public function edit(Video $video)
     {
-        $video = $id;
-        $this->authorize('webmaster', Auth::user()); 
-        return view('admin.pages.home.video', compact('video'));
+        $this->authorize('webmaster', Auth::user());
+        return view('admin.pages.home.editVideo', compact('video'));
     }
 
     /**
@@ -84,20 +84,21 @@ class VideoController extends Controller
      */
     public function update(Request $request, Video $video)
     {
-        $this->authorize('webmaster', Auth::user());
+        $this->authorize('webmaster', Auth::user()); 
         $request->validate([
-            "lien" => "required",
-        ]); 
+            "url" => "required",
+            "image" => "required",
+        ]);
+        if ($request->file('image') != null) {
+            Storage::disk('public')->delete('img/' . $video->image);
 
-        if($request->hasFile('url')){
-            $request->file('imgvideo')->storePublicly('img/','public');
-            $video->url = "img/" . $request->file('imgvideo')->hashName();
-        } 
-        $video->image  = $request->image; 
-        $video->url = $request->url; 
-        $video->save(); 
-
-        return redirect()->route('video.index')->with('success', 'Modification de la vidéo effectuée avec succès !');
+            $request->file('image')->storePublicly('img/','public');
+            $video->image =  $request->file('image')->hashName();
+            $video->save();
+        }
+        $video->url =  $request->url;
+        $video->save();
+        return redirect()->route('video.index')->with('success', "La modification a bien été éxécuté");
     }
 
     /**

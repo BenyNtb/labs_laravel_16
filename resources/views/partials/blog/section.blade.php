@@ -4,35 +4,35 @@
         <div class="row">
             
             <div class="col-md-8 col-sm-7 blog-posts">
-                @foreach ($blogs as $blog)
+                @foreach ($posts as $post)
                 <!-- Post item -->
                 <div class="post-item">
                     <div class="post-thumbnail">
-                        <img src="{{asset('img/'. $blog->image)}}" alt="">
+                        <img src="{{asset('img/'. $post->image)}}" alt="">
                         <div class="post-date">
                             <h2>03</h2>
                             <h3>Nov 2017</h3>
                         </div>
                     </div>
                     <div class="post-content">
-                        <h2 class="post-title">{{$blog->titre}}</h2>
+                        <h2 class="post-title">{{$post->titre}}</h2>
                         <div class="post-meta">
-                            <a href="">{{$blog->categorie->nom}}</a>
-                            @if (count($blog->tags) <= 0)
+                            <a href="">{{$post->categorie->nom}}</a>
+                            @if (count($post->tags) <= 0)
                                 <span class="text-secondary">
                                     0 tags pour cet article. 
                                 </span>    
                             @else
-                                @foreach ($blog->tags as $tag)
+                                @foreach ($post->tags as $tag)
                                     <a href="">
                                         <span class="text-primary">{{$tag->nom}}</span>
                                     </a>
                                 @endforeach
                             @endif
                             
-                            <a href="">2 Comments</a>
+                            <a href="">{{count($post->commentaire)}} comments</a>
                         </div>
-                        <p>{{$blog->description}}</p>
+                        <p>{{ Str::limit($post->description, 200, '...') }}</p>
                         <a href="{{route('blog-post')}}" class="read-more">Read More</a>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                 
                 <!-- Pagination -->
                 <div class="page-pagination">
-                    {{ $blogs3->links('pagination::bootstrap-4')}}
+                    {{$posts->links('vendor.pagination.simple-default')}}
                 </div>
                 @endforeach
             </div>

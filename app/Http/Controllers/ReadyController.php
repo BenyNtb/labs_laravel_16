@@ -82,7 +82,7 @@ class ReadyController extends Controller
         $ready->texte = $request->texte;
         $ready->save(); 
 
-        return redirect()->route('ready.index')->with('success', 'Modification reussi'); 
+        return redirect()->route('ready.index')->with('success', 'Modification effectuée'); 
     }
 
     /**

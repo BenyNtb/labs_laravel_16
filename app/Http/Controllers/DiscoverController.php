@@ -19,7 +19,14 @@ class DiscoverController extends Controller
     {
         $titres = Titre::all();
         $services = Service::all();
-        return view('admin.pages.home.discover', compact('titres', 'services'));
+        $discovers = Discover::all();
+        $titreDiscover = Titre::find(1);
+        return view('admin.pages.home.discover', compact('titres', 'services', 'discovers', 'titreDiscover'));
+    }
+    public function indexTitre()
+    {
+        $titres = Titre::all();
+        return view('admin.pages.home.titres', compact('titres'));
     }
 
     /**
@@ -46,10 +53,10 @@ class DiscoverController extends Controller
             "titre" => "required",
             "description" => "required|max:200"
         ]);
-        $discover->titre = $request->stitre; 
+        $discover->titre = $request->titre; 
         $discover->description = $request->description; 
         $discover->save();
-        return redirect()->route('discover.index')->with('success', 'Modification Service effectuée avec succès !'); 
+        return redirect()->route('homediscover.index')->with('success', 'Modification Service effectuée avec succès !'); 
     }
 
     /**
@@ -75,6 +82,12 @@ class DiscoverController extends Controller
         $this->authorize('webmaster', Auth::user()); 
         return view('admin.pages.home.editDiscover', compact('discover')); 
     }
+    public function editTitre(Titre $id )
+    {
+        $titre = $id;
+        $this->authorize('webmaster', Auth::user()); 
+        return view('admin.pages.home.editTitre', compact('titre')); 
+    }
 
     /**
      * Update the specified resource in storage.
@@ -88,14 +101,25 @@ class DiscoverController extends Controller
         $this->authorize('webmaster', Auth::user()); 
 
         $request->validate([
-            "titre" => "required",
             "description" => "required"
         ]);
-        $discover->titre = '';
         $discover->description = $request->description; 
         $discover->save(); 
 
         return redirect()->route('homediscover.index')->with('success', 'Modification Service effectuée avec succès !');
+    }
+    public function updateTitre(Request $request, Titre $id)
+    {
+        $this->authorize('webmaster', Auth::user()); 
+
+        $request->validate([
+            "titre" => "required"
+        ]);
+        $discover = $id;
+        $discover->titre = $request->titre; 
+        $discover->save(); 
+
+        return redirect()->route('titre.index')->with('success', 'Modification Service effectuée avec succès !');
     }
 
     /**

@@ -45,6 +45,9 @@ class AllController extends Controller
         // $titreDiscover = Titre::where('id', 1)->get();
         // $titreService = Titre::where('id', 2)->get();
         // $titreTeam = Titre::where('id', 3)->get();
+        $titreDiscover = Titre::find(1);
+        $titreService = Titre::find(2);
+        $titreTeam = Titre::find(3);
         $contacts = Contact::all();
 
         return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies', 'contacts', 'titres', 'carousel'));
@@ -64,17 +67,16 @@ class AllController extends Controller
         return view('contact', compact('contacts', 'sujets'));
     }
     public function blog(){
-        $blogs = Blog::all();
-        $blogs3 = Service::paginate(3)->fragment('servicePaginate');
+        $posts = Blog::paginate(3)->fragment('blogPaginate');
         $categories = Categorie::all();
         $tags = Tag::all();
-        return view('blog', compact('blogs', 'blogs3', 'categories', 'tags'));
+        return view('blog', compact('categories', 'tags', 'posts'));
     }
     public function blogpost(){
         $categories = Categorie::all();
-        $articles = Article::all();
+        $blog = Blog::all();
         $tags = Tag::all();
-        return view('blog-post',  compact('categories', 'articles', 'tags'));
+        return view('blog-post',  compact('categories', 'blog', 'tags'));
     }
     public function search(Request $request){ 
         if($request->has('x')){

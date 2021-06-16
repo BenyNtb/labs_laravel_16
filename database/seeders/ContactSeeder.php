@@ -18,12 +18,12 @@ class ContactSeeder extends Seeder
             'titre' => 'CONTACT US',
             'description' => 'Cras ex mauris, ornare eget pretium sit amet, dignissim et turpis. Nunc nec maximus dui, vel suscipit dolor. Donec elementum velit a orci facilisis rutrum.',
             'soustitre' => 'Main Office',
-            'adresse' => 'C/ Libertad, 34
-            05200 Arévalo',
+            "adresse1" =>  "C/ Libertad, 34",
+            "adresse2" =>  "05200 Arévalo",
             'telephone' => '0034 37483 2445 322',
             'mail' => 'hello@company.com',
             "position" => "40.801485408197856, -73.96745953467104", 
-                "footer" => "All rights reserved. Designed by <a href='#'>Colorlib</a>",
+            "footer" => "All rights reserved. Designed by <a href='#'>Colorlib</a>",
             'created_at' => now(),
         ]);
     }

@@ -50,10 +50,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Genre::class);
     }
-    public function photo()
-    {
-        return $this->belongsTo(Photo::class);
-    }
     public function role()
     {
         return $this->belongsTo(Role::class);

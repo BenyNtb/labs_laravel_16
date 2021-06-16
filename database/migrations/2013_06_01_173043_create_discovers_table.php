@@ -15,7 +15,6 @@ class CreateDiscoversTable extends Migration
     {
         Schema::create('discovers', function (Blueprint $table) {
             $table->id();
-            $table->string('titre');
             $table->text('description', 352);
             $table->timestamps();
         });

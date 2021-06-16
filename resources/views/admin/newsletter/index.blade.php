@@ -21,7 +21,7 @@
                             @endforeach
                         </table>
                     @else
-                        <p class="text-center font-bold mx-auto">Aucun mail enregistrer dans la Newsletter</p>
+                        <p class="text-center font-bold mx-auto">Aucun mail enregistré dans la Newsletter</p>
                     @endif
                 </div>
             </div>
