@@ -14,7 +14,7 @@
                             </div>
                             <div class="my-4">
                                 <p class="font-bold">Catégorie
-                                    <select name="cat" id="cat">
+                                    <select name="categorie_id" id="categorie_id">
                                         @foreach ($categories as $cat)
                                         <option value="{{$cat->id}}">{{$cat->nom}}</option>
                                         @endforeach
@@ -23,7 +23,7 @@
                             </div>
                             <div class="my-4">
                                 <p class="font-bold">Tags:
-                                    <select name="tag" id="tag">
+                                    <select name="tag[]" id="tag">
                                         @foreach ($tags as $tag)
                                         <option value="{{$tag->id}}">{{$tag->nom}}</option>
                                         @endforeach

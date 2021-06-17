@@ -1,4 +1,5 @@
 <x-app-layout>
+    @extends('layouts.flash')
     <div class="flex flex-col">
         <div class="bg-white shadow-md  rounded-3xl p-4">
             <div class="flex-none lg:flex">

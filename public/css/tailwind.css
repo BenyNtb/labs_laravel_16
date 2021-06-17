@@ -41842,6 +41842,11 @@ select {
 
   .sm\:rounded-lg {
     border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15rem;
+    margin-top: -35rem;
   }
 
   .sm\:rounded-xl {

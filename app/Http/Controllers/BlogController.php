@@ -127,13 +127,14 @@ class BlogController extends Controller
 
         $blog->titre = $request->titre;
         $blog->description = $request->description;
-        $blog->user_id = Auth::User()->id;
+        // $blog->user_id = Auth::User()->id;
         $blog->categorie_id = $request->categorie_id;
-        $blog->validate = 0;
+        // $blog->validate = 0;
         if ($request->file('image') != null) {
             Storage::disk('public')->delete('img/' . $blog->image);
 
             $request->file('image')->storePublicly('img/','public');
+            dd($request);
             $blog->image =  $request->file('image')->hashName();
             $blog->save();
         }

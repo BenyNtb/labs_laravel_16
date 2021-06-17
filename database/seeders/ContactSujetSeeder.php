@@ -24,7 +24,7 @@ class ContactSujetSeeder extends Seeder
                 'created_at' => now(),
             ],
             [
-                'option' => 'Quote request',
+                'option' => 'Post request',
                 'created_at' => now(),
             ],
         ]);

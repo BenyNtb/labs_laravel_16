@@ -1,8 +1,9 @@
 <x-app-layout>
+    @extends('layouts.flash')
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white  shadow-sm sm:rounded-lg">
-                <div class="p-4 bg-white border-b border-gray-200 block">
+            <div class="bg-green-400  shadow-sm sm:rounded-lg">
+                <div class="p-4 bg-green-400 border-b border-gray-200 block">
                     <div class="text-center bg-gray-100 py-4 shadow-md w-6/12 mx-auto rounded-lg">
                         <h3 class="text-4xl m-2 text-center text-gray-600">Page Contact</h3>
                     </div>

@@ -6,10 +6,7 @@
                 <ul class="relative m-0 p-0 list-none h-full">
                     <li
                         class="text-white text-2xl p-4 w-full flex relative shadow-sm justify-start bg-gray-800 border-b-2 border-gray-700">
-                        {{-- @foreach ($logo as $logo)
-                            <img src="{{asset('img/'.$logo->logo)}}" alt="logo">
-                        @endforeach --}}
-                        LABS
+                        <img class="" src="{{asset('img/logo.png')}}" alt="">
                     </li>
 
                     <li
@@ -103,11 +100,7 @@
 
                     <div class="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
                         <div class="mr-4 my-auto">
-                            <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z">
-                                </path>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg>
                         </div>
                         <div class="flex-auto my-1">
                             <a href="{{route('blog.index')}}">
@@ -117,13 +110,7 @@
                     </div>
 
                     <div class="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
-                        <div class="mr-4 my-auto">
-                            <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2
-                                2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0
-                                00-2-2h-1V1m-1 11h-5v5h5v-5z"></path>
-                            </svg>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10.01 21.01c0 1.1.89 1.99 1.99 1.99s1.99-.89 1.99-1.99h-3.98zm8.87-4.19V11c0-3.25-2.25-5.97-5.29-6.69v-.72C13.59 2.71 12.88 2 12 2s-1.59.71-1.59 1.59v.72C7.37 5.03 5.12 7.75 5.12 11v5.82L3 18.94V20h18v-1.06l-2.12-2.12zM16 13.01h-3v3h-2v-3H8V11h3V8h2v3h3v2.01z"/></svg>
                         <div class="flex-auto my-1">
                             <a href="{{ route('newsletter.index') }}">
                                 <span>Newsletter</span>
@@ -134,11 +121,7 @@
 
                     <div class="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
                         <div class="mr-4 my-auto">
-                            <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M7.77 6.76L6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z">
-                                </path>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22 3H2C.9 3 0 3.9 0 5v14c0 1.1.9 2 2 2h20c1.1 0 1.99-.9 1.99-2L24 5c0-1.1-.9-2-2-2zM8 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H2v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1zm3.85-4h1.64L21 16l-1.99 1.99c-1.31-.98-2.28-2.38-2.73-3.99-.18-.64-.28-1.31-.28-2s.1-1.36.28-2c.45-1.62 1.42-3.01 2.73-3.99L21 8l-1.51 2h-1.64c-.22.63-.35 1.3-.35 2s.13 1.37.35 2z"/></svg>
                         </div>
                         <div class="flex-auto my-1">
                             <a href="{{ route('contact.index') }}">
@@ -148,16 +131,25 @@
                     </div>
                     <div class="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
                         <div class="mr-4 my-auto">
-                            <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M7.77 6.76L6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z">
-                                </path>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/></svg>
                         </div>
                         <div class="flex-auto my-1">
                             <a href="{{ route('validate.index') }}">
                                 <span>Validation</span>
                             </a>
+                        </div>
+                    </div>
+                    <div class="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
+                        <div class="mr-4 my-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-auto my-1">
+                            <a href="{{ route('trash.index') }}">
+                                <span>Corbeille</span>
+                            </a>
+                        
                         </div>
                     </div>
                 </ul>

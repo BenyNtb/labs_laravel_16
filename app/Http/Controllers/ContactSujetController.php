@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactSender;
 use App\Models\Contact;
 use App\Models\ContactSujet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ContactSujetController extends Controller
 {
@@ -34,7 +36,8 @@ class ContactSujetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Mail::to('b.ntambwe97@gmail.com')->send(new ContactSender($request));
+        return redirect()->back();
     }
 
     /**

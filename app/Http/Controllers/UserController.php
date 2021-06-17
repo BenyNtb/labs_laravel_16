@@ -122,7 +122,7 @@ class UserController extends Controller
             ]);
             $user->role_id = $request->role_id;
             $user->save();
-            return redirect()->back()->with('success', 'Profil bien modifié');
+            return redirect()->back()->with('success', 'Profil modifié');
         }
     }
     public function updateMembre(User $user, Request $request)
@@ -138,7 +138,7 @@ class UserController extends Controller
         $user->poste_id = $request->poste_id;
         $user->save();
 
-        return redirect()->back()->with('success', 'Profil bien modifié');
+        return redirect()->back()->with('success', 'Profil modifié');
     }
 
 
@@ -152,6 +152,6 @@ class UserController extends Controller
     {
         // $this->authorize('isAdmin');
         $id->delete();
-        return redirect()->route('user.index')->with('warning', 'Utilisateur bien supprimé');
+        return redirect()->route('user.index')->with('warning', 'Utilisateur supprimé');
     }
 }

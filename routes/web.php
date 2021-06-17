@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AllController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactSujetController;
 use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\MailContactController;
 use App\Http\Controllers\NewsletterController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServicehomeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialsController;
+use App\Http\Controllers\TrashController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValidateController;
 use App\Http\Controllers\VideoController;
@@ -44,7 +47,7 @@ Route::get('/blog', [AllController::class, 'blog'])->name('blog');
 Route::get('/blog-post', [AllController::class, 'blogp'])->name('blog-post');
 // Route::get('/blog/post/{id}', [AllController::class, 'showpost'])->name('blog.show');
 Route::get('/contact', [AllController::class, 'contact'])->name('contact');
-
+Route::post('/contact', [ContactSujetController::class, 'store'])->name('objet');
 // Search
 Route::get('/blog/search/', [AllController::class, 'search'])->name('blog.search');
 
@@ -128,16 +131,21 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/admin/recup/article/{id}/', [TrashController::class,'recupArticle'])->name('recupArticle');
 
         // Commentaires
-        Route::post('/blog/article/{id}/comment', [CommentController::class, "store"])->name('commentStore');
+        Route::post('/blog/article/{id}/comment', [CommentaireController::class, "store"])->name('commentStore');
         // Validation  commentaire
-        Route::put('/admin/validation/update/{id}', [CommentController::class, 'update'])->name('commentUpdate');
+        Route::put('/admin/validation/update/{id}', [CommentaireController::class, 'update'])->name('commentUpdate');
         // Supprimer un commentaire non-validé
         Route::delete('/admin/validate/comment/{id}/delete', [ValidateController::class,'deleteComment'])->name('validateDeleteComment');
 
     });
-    Route::resource('/admin/user', UserController::class)->middleware('admin');
+    // Route::resource('/admin/user', UserController::class)->middleware('admin');
+    Route::get('/admin/user', [UserController::class, 'index'])->name('user.index')->middleware('admin');
+    Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware('admin');
+    Route::put('/admin/user/update/{user}', [UserController::class, 'update'])->name('user.update')->middleware('admin');
+    Route::delete('/admin/user/{id}/delete', [UserController::class, 'destroy'])->name('user.destroy');
 });
-Route::put('admin/user/{user}/edit', [UserController::class, 'updateMembre'])->name('membre.update');
+// Route::get('admin/user/{user}/edit', [UserController::class, 'edit'])->name('membre.edit');
+Route::put('admin/user/update/{user}', [UserController::class, 'updateMembre'])->name('membre.update');
 
 // Admin - TRASH
 Route::get('/admin/trash', [TrashController::class, 'index'])->middleware(['webmaster'])->name('trash.index');

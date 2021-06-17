@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'nom' => 'Admin',
+                'img' => 'img/bo/admin.png',
                 'role_id' => 1,
                 'genre_id' => 2,
                 'poste_id' => 1,
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
             [
 
                 'nom' => 'Webmaster',
+                'img' => 'img/bo/webmaster.png',
                 'role_id' => 2,
                 'genre_id' => 2,
                 'poste_id' => 2,
@@ -42,6 +44,7 @@ class UserSeeder extends Seeder
             [
 
                 'nom' => 'Redacteur',
+                'img' => 'img/bo/redacteur.png',
                 'role_id' => 3,
                 'genre_id' => 1,
                 'poste_id' => 3,
@@ -54,6 +57,7 @@ class UserSeeder extends Seeder
             [
 
                 'nom' => 'Membre',
+                'img' => 'img/bo/defaultprofile.jpg',
                 'role_id' => 4,
                 'poste_id' => 4,
                 'photo_id' => 4,

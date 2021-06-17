@@ -15,16 +15,21 @@
             </div>
             <!-- contact form -->
             <div class="col-md-6 col-pull">
-                <form class="form-class" id="con_form">
+                <form class="form-class" id="con_form" method="POST" action="{{route('objet')}}">
+                    @csrf
                     <div class="row">
                         <div class="col-sm-6">
                             <input type="text" name="name" placeholder="Your name">
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" name="email" placeholder="Your email">
+                            <input type="text" name="mail" placeholder="Your mail">
                         </div>
                         <div class="col-sm-12">
-                            <input type="text" name="subject" placeholder="Subject">
+                            <select style="padding: 10px" style="margin: 10px" name="objets" id="">
+                                @foreach ($sujets as $sujet)
+                                    <option value="{{$sujet->option}}">{{$sujet->option}}</option>
+                                @endforeach
+                            </select>
                             <textarea name="message" placeholder="Message"></textarea>
                             <button class="site-btn">send</button>
                         </div>

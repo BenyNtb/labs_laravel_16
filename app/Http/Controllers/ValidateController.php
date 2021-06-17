@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\RegisterSender;
+use App\Mail\WelcomeSender;
 use App\Models\Blog;
 use App\Models\Commentaire;
 use App\Models\Role;
@@ -37,7 +38,7 @@ class ValidateController extends Controller
         $user->validate = 1;
         $user->save();
 
-        Mail::to($user->email)->send(new RegisterSender($user));
+        Mail::to($user->email)->send(new WelcomeSender($user, $id));
 
         return redirect()->back()->with('success', 'Membre validé');
     }

@@ -1,3 +1,4 @@
+@extends('layouts.flash')
 <x-app-layout>
     <!-- component -->
     <div class="content" >

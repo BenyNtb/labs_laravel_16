@@ -49,8 +49,9 @@ class AllController extends Controller
         $titreService = Titre::find(2);
         $titreTeam = Titre::find(3);
         $contacts = Contact::all();
+        $sujets = ContactSujet::all();
 
-        return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies', 'contacts', 'titres', 'carousel'));
+        return view('home', compact('logo', 'services3', 'services9', 'discovers', 'testimonials', 'team', 'videos', 'teamC', 'ceo', 'centre', 'photos', 'readies', 'contacts', 'titres', 'carousel', 'sujets'));
     }
     public function services(){
         $services3 = Service::InRandomOrder()->limit(3)->get();
@@ -59,7 +60,8 @@ class AllController extends Controller
         // $titreDiscover = Titre::where('id', 1)->get();
         // $titreService = Titre::where('id', 2)->get();
         $titres = Titre::all();
-        return view('services', compact( 'services3', 'articles', 'services', 'titres'));
+        $sujets = ContactSujet::all();
+        return view('services', compact( 'services3', 'articles', 'services', 'titres', 'sujets'));
     }
     public function contact(){
         $contacts = Contact::all();
@@ -70,7 +72,8 @@ class AllController extends Controller
         $posts = Blog::paginate(3)->fragment('blogPaginate');
         $categories = Categorie::all();
         $tags = Tag::all();
-        return view('blog', compact('categories', 'tags', 'posts'));
+        $sujets = ContactSujet::all();
+        return view('blog', compact('categories', 'tags', 'posts', 'sujets'));
     }
     public function blogpost(){
         $categories = Categorie::all();
