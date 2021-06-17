@@ -39,10 +39,10 @@
                 
                 
                 <!-- Pagination -->
+                @endforeach
                 <div class="page-pagination">
                     {{$posts->links('vendor.pagination.simple-default')}}
                 </div>
-                @endforeach
             </div>
             <!-- Sidebar area -->
             <div class="col-md-4 col-sm-5 sidebar">

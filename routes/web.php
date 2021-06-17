@@ -21,6 +21,7 @@ use App\Http\Controllers\VideoController;
 use App\Models\Discover;
 use App\Models\Icone;
 use App\Models\Logo;
+use App\Models\Poste;
 use App\Models\Role;
 use App\Models\Service;
 use App\Models\Team;
@@ -45,7 +46,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AllController::class, 'home'])->name('home');
 Route::get('/services', [AllController::class, 'services'])->name('services');
 Route::get('/blog', [AllController::class, 'blog'])->name('blog');
-Route::get('/blog-post', [AllController::class, 'blogp'])->name('blog-post');
+Route::get('/blog-post', [AllController::class, 'blogpost'])->name('blog-post');
 // Route::get('/blog/post/{id}', [AllController::class, 'showpost'])->name('blog.show');
 Route::get('/contact', [AllController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactSujetController::class, 'store'])->name('objet');
@@ -115,12 +116,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Blog
         // Route::resource('/admin/blog', BlogController::class);
-        Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('blog.create');
-        Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('blog.store');
+        
         // Route::get('/admin/blog', [BlogController::class, 'index'])->name('blog.index');
         // Route::get('/admin/blog/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
         // Route::put('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
-        Route::delete('/admin/blog/{id}/delete', [BlogController::class, 'destroy'])->name('blog.destroy');
+        
 
         // Validate
         Route::get('/admin/validate', [ValidateController::class, 'index'])->name('validate.index');
@@ -160,17 +160,22 @@ Route::delete('/admin/trash/article/{id}/delete', [TrashController::class,'delet
 
 // CRUD Blog Redacteur
 // Route::middleware(['redacteur'])->group(function () {
+    Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('blog.create');
+    Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('blog.store');
     Route::get('/admin/blog/index', [BlogController::class, 'index'])->name('blog.index');
     Route::get('/admin/blog/{blog}/show', [BlogController::class, 'show'])->name('blog.show'); 
-    Route::get('/admin/blog/{blog}/edit', [BlogController::class, 'edit'])->name('blog.edit'); 
-    Route::put('/admin/blog/{blog}/update', [BlogController::class,'update'])->name('blog.update');
+    Route::get('/admin/blog/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit'); 
+    Route::put('/admin/blog/{id}/update', [BlogController::class,'update'])->name('blog.update');
+    Route::delete('/admin/blog/{id}/delete', [BlogController::class, 'destroy'])->name('blog.destroy');
 // }); 
 
 
 // Auth
 Route::get('/back', function () {
     $user = User::all();
-    return view('/admin/dashboard', compact('user'));
+    $roles = Role::all();
+    $postes = Poste::all();
+    return view('/admin/dashboard', compact('user', 'roles', 'postes'));
 })->middleware(['auth'])->name('dashboard');
 
 

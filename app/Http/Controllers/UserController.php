@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Discover;
 use App\Models\Genre;
+use App\Models\Photo;
 use App\Models\Poste;
 use App\Models\Role;
 use App\Models\Service;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -108,23 +110,31 @@ class UserController extends Controller
      */
     public function update(User $user, Request $request)
     {
-        $this->authorize('admin');
+        $this->authorize('isRealUser', $user);
         $request->validate([
-            'nom' => 'required|string|max:255',
-            'email' => 'required|string',
-            'poste_id' => 'required',
-        ]);
-        $user->nom = $request->nom;
-        $user->email = $request->email;
-        $user->poste_id = $request->poste_id;
-        if ($request->has('roleUpdate')) {
-            $request->validate([
-                "role_id" => ["required"]
-            ]);
+                'nom' => 'required|string|max:255',
+                'email' => 'required|email',
+                'poste_id' => 'required',
+                'role_id' => 'required',
+                ]);
+
+            if ($request->newimage != null) {
+                $photo = Photo::where('id', $user->photo_id)->get();
+                Storage::disk('public')->delete('img/bo/'.$photo->src);
+                $request->file('newimage')->storePublicly('img/bo/', 'public');
+                $photo->src = $request->file('newimage')->hashName();
+                $photo->save();
+                $user->photo_id = $photo->id;
+                $user->save();
+            }
+            
+            $user->nom = $request->nom;
+            $user->email = $request->email;
+            $user->poste_id = $request->poste;
             $user->role_id = $request->role_id;
             $user->save();
-            return redirect()->back()->with('success', 'Profil modifié');
-        }
+
+        return redirect()->back()->with('success', 'votre profil a été édité');
     }
     public function updateMembre(User $user, Request $request)
     {
@@ -139,7 +149,7 @@ class UserController extends Controller
         $user->poste_id = $request->poste_id;
         $user->save();
 
-        return redirect()->route('user.index')->with('success', 'Profil modifié');
+        return redirect()->route('dashboard')->with('success', 'Profil modifié');
     }
 
 

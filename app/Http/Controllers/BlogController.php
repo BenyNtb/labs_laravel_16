@@ -99,12 +99,13 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(Blog $id)
     {
-        $this->authorize('redacteur', $blog);
+        $this->authorize('redacteur', $id);
         $categories = Categorie::all(); 
         $tags = Tag::all();
-        $blogtags = Blogtag::all()->where('post_id', $blog->id); 
+        $blog = $id;
+        $blogtags = Blogtag::all()->where('post_id', $id); 
         return view('admin.blog.edit', compact('blog', 'categories', 'tags', 'blogtags'));
     }
 
@@ -138,18 +139,18 @@ class BlogController extends Controller
         $blog->description = $request->description;
         $blog->save();
 
-        $arttag = BlogTag::where('article_id', $blog->id)->get();
+        $arttag = BlogTag::where('blog_id', $blog->id)->get();
         foreach ($arttag as $item ) {
             $item->delete();
         }
-        foreach ($request->tag as $tag) {
+        
             $new = new BlogTag();
-            $new->tag_id = $tag;
-            $new->article_id = $blog->id;
+            $new->tag_id = $request->tag;
+            $new->blog_id = $blog->id;
             $new->save();
-        }
-        return dd($blog);
-        // return redirect()->route('blog.index');
+        
+        // return dd($blog);
+        return redirect()->route('blog.index');
     }
 
     /**

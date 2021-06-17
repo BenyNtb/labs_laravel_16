@@ -30,11 +30,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if('Webmaster', function () {
-            return Auth::user()->role_id == 1 || Auth::user()->role_id == 2;
+            return Auth::user()->role_id == 2;
         });
 
         Blade::if('Redacteur', function () {
-            return Auth::user()->role_id == 1 || Auth::user()->role_id == 2 || Auth::user()->role_id == 3;
+            return Auth::user()->role_id == 3;
         });
         Blade::if('Membre', function () {
             return Auth::user()->role_id == 4;

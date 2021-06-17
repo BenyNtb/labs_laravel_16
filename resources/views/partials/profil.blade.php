@@ -73,7 +73,7 @@
                     @enderror
 
                 </div>
-                @admin
+                @Admin
                 <div class="grid grid-cols-1 mt-5 mx-7">
                     <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Avatar</label>
                     <select name="role_id"
@@ -86,7 +86,7 @@
                 </div>
                 <div class="grid grid-cols-1 mt-5 mx-7">
                     <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Avatar</label>
-                    <select name="role_id"
+                    <select name="poste_id"
                         class="form-select mt-1 block w-full py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent selectAvatar">
                         @foreach ($postes as $poste)
                         <option {{ $poste->id == Auth::user()->poste_id ? 'selected' : '' }} value="{{ $poste->id }}">
@@ -94,7 +94,7 @@
                         @endforeach
                     </select>
                 </div>
-                @endadmin
+                @endAdmin
 
                 {{-- image --}}
                 <div class="grid grid-cols-1 md:grid-cols-1 gap-5 md:gap-8 mt-5 mx-auto">

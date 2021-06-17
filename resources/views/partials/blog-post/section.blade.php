@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-8 col-sm-7 blog-posts">
 
-                @switch($route)
+                {{-- @switch($route)
                 @case(" search")
                 <p>Searching post : {{ $x }} </p>
                 <ul>
@@ -15,7 +15,7 @@
                     @endforelse
                 </ul>
                 @break
-                @case(" articles")
+                @case(" articles") --}}
                 <div class="single-post">
                     <div class="post-item">
                         <div class="post-thumbnail">
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                @break
+                {{-- @break
                 @case(" categories")
                 <p>{{ count($categ) }} Result(s) of search for categorie: {{ $categorie }} </p>
 
@@ -151,7 +151,7 @@
                 @break
                 @default
                 <p>Erreur 404: page not found. <a href="{{ route(redirect()->back()) }}">Go back </a></p>
-                @endswitch
+                @endswitch --}}
 
             </div>
             <!-- Sidebar area -->
@@ -197,4 +197,4 @@
         </div>
     </div>
 </div>
- <!-- page section end-->
+<!-- page section end-->
