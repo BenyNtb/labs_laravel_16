@@ -115,39 +115,41 @@ class BlogController extends Controller
      * @param  \App\Models\ArticleBlog  $articleBlog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
-    {
-        $this->authorize('redacteur', $blog);
-        request()->validate([
-            "titre" => ["required"],
-            "description" => ["required"],
-            "image" => ["required"],
-            "categorie_id" => ["required"],
+    public function update(Request $request, Blog $id ){
+        $blog = $id;
+        
+
+        $request->validate([
+            'titre'=>"required",
+            'description'=>"required|min:20",
+            "image" => "required",
+            "categorie_id" => "required",
         ]);
 
-        $blog->titre = $request->titre;
-        $blog->description = $request->description;
-        // $blog->user_id = Auth::User()->id;
-        $blog->categorie_id = $request->categorie_id;
-        // $blog->validate = 0;
-        if ($request->file('image') != null) {
-            Storage::disk('public')->delete('img/' . $blog->image);
-
-            $request->file('image')->storePublicly('img/','public');
-            dd($request);
-            $blog->image =  $request->file('image')->hashName();
+        if ( $request->image != null) {
+            Storage::disk('public')->delete('img/', 'public');
+            $request->file('image')->storePublicly('img/', 'public');
+            $blog->image = $request->file('image')->hashName();
             $blog->save();
         }
 
-        DB::table('blogtags')->where('post_id', $blog->id)->delete();
-        foreach ($request->input('taglist') as $value) {
-            $tag = new Blogtag();
-            $tag->blog_id = $blog->id;
-            $tag->tag_id = $value;
-            $tag->save();
+        $blog->titre = $request->titre;
+        $blog->categorie_id = $request->categorie_id;
+        $blog->description = $request->description;
+        $blog->save();
+
+        $arttag = BlogTag::where('article_id', $blog->id)->get();
+        foreach ($arttag as $item ) {
+            $item->delete();
         }
-        
-        return redirect()->route('blog.index')->with('success', 'Modifications enregistrées, en attente de validation');
+        foreach ($request->tag as $tag) {
+            $new = new BlogTag();
+            $new->tag_id = $tag;
+            $new->article_id = $blog->id;
+            $new->save();
+        }
+        return dd($blog);
+        // return redirect()->route('blog.index');
     }
 
     /**

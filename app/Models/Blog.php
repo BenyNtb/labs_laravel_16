@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
+    protected $fillable = ['categorie_id',
+    'tag', 
+    'commentaire',
+    'user',
+    'titre',
+    'description',
+    'image'];
     public function categorie()
     {
         return $this->belongsTo(Categorie::class);

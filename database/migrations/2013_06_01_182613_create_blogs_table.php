@@ -19,7 +19,7 @@ class CreateBlogsTable extends Migration
             $table->string('titre');
             $table->text('description', 318);
             $table->unsignedBigInteger('categorie_id');
-            $table->foreign('categorie_id')->references('id')->on('categories');
+            $table->foreign('categorie_id')->references('id')->on('categories') ->onUpdate('cascade');
             $table->boolean('validate');
             $table->boolean('trash');
             $table->foreignId('user_id')->constrained()->OnDelete('cascade');

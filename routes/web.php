@@ -113,7 +113,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('blog.store');
         Route::get('/admin/blog', [BlogController::class, 'index'])->name('blog.index');
         Route::get('/admin/blog/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
-        Route::put('/admin/blog/update/{blog}', [BlogController::class, 'update'])->name('blog.update');
+        Route::put('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
         Route::delete('/admin/blog/{id}/delete', [BlogController::class, 'destroy'])->name('blog.destroy');
 
         // Validate
@@ -155,9 +155,9 @@ Route::delete('/admin/trash/article/{id}/delete', [TrashController::class,'delet
 // CRUD Blog Redacteur
 Route::middleware(['redacteur'])->group(function () {
     Route::get('/admin/blog/index', [BlogController::class, 'index'])->name('blog.index');
-    Route::get('/admin/blog/show/{article}', [BlogController::class, 'show'])->name('blog.show'); 
-    Route::get('/admin/blog/edit/{article}', [BlogController::class, 'edit'])->name('blog.edit'); 
-    Route::post('/admin/blog/update/{article}', [BlogController::class,'update'])->name('blog.update');
+    Route::get('/admin/blog/{blog}/show', [BlogController::class, 'show'])->name('blog.show'); 
+    Route::get('/admin/blog/{blog}/edit', [BlogController::class, 'edit'])->name('blog.edit'); 
+    Route::put('/admin/blog/{blog}/update', [BlogController::class,'update'])->name('blog.update');
 }); 
 
 

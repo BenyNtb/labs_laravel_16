@@ -22,7 +22,7 @@
                                 <td class="py-4 px-6 border-b text-black font-bold border-grey-light"><img src="{{ asset('img/' . $art->image) }}" alt="" style="max-height:50px;"></td>
                                 <td class="py-4 px-6 border-b text-black font-bold border-grey-light">{{ $art->titre }}</td>
                                 <td class="flex">
-                                    <a href="{{route('blog.edit', $art->id) }}" class=" w-auto bg-blue-500 hover:bg-blue-700 rounded-lg shadow-xl font-medium text-white mr-1 px-3 py-2">Edit</a>
+                                    <a href="{{route('blog.edit', $art) }}" class=" w-auto bg-blue-500 hover:bg-blue-700 rounded-lg shadow-xl font-medium text-white mr-1 px-3 py-2">Edit</a>
                                     <form action="{{route('blog.destroy', $art->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
