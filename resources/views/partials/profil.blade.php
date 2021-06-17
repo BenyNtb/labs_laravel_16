@@ -73,7 +73,7 @@
                     @enderror
 
                 </div>
-                {{-- @admin
+                @admin
                 <div class="grid grid-cols-1 mt-5 mx-7">
                     <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Avatar</label>
                     <select name="role_id"
@@ -94,7 +94,7 @@
                         @endforeach
                     </select>
                 </div>
-                @endadmin --}}
+                @endadmin
 
                 {{-- image --}}
                 <div class="grid grid-cols-1 md:grid-cols-1 gap-5 md:gap-8 mt-5 mx-auto">

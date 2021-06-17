@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactSujetController;
 use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\MailContactController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ReadyController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServicehomeController;
@@ -98,9 +99,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('homes/newsletter', [NewsletterController::class, "store"])->name('newsletter');
 
         // Ready
+        Route::get('/admin/ready', [ReadyController::class, 'index'])->name('ready.index');
+        Route::get('/admin/ready/edit/{ready}', [ReadyController::class, 'edit'])->name('ready.edit');
+        Route::put('/admin/ready/update/{ready}', [ReadyController::class, 'update'])->name('ready.update');
+
+        //Role
         Route::get('/admin/role', [RoleController::class, 'index'])->name('role.index');
         Route::get('/admin/role/{role}/edit', [RoleController::class, 'edit'])->name('role.edit');
-        Route::get('/admin/role/{role}/update', [RoleController::class, 'update'])->name('role.update');
+        Route::put('/admin/role/{role}/update', [RoleController::class, 'update'])->name('role.update');
 
         // Contact
         Route::get('/admin/contact', [ContactController::class, 'index'])->name('contact.index');
@@ -111,9 +117,9 @@ Route::middleware(['auth'])->group(function () {
         // Route::resource('/admin/blog', BlogController::class);
         Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('blog.create');
         Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('blog.store');
-        Route::get('/admin/blog', [BlogController::class, 'index'])->name('blog.index');
-        Route::get('/admin/blog/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
-        Route::put('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
+        // Route::get('/admin/blog', [BlogController::class, 'index'])->name('blog.index');
+        // Route::get('/admin/blog/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
+        // Route::put('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
         Route::delete('/admin/blog/{id}/delete', [BlogController::class, 'destroy'])->name('blog.destroy');
 
         // Validate
@@ -153,12 +159,12 @@ Route::get('/admin/trash', [TrashController::class, 'index'])->middleware(['webm
 Route::delete('/admin/trash/article/{id}/delete', [TrashController::class,'deleteArticle'])->name('deleteArticle');
 
 // CRUD Blog Redacteur
-Route::middleware(['redacteur'])->group(function () {
+// Route::middleware(['redacteur'])->group(function () {
     Route::get('/admin/blog/index', [BlogController::class, 'index'])->name('blog.index');
     Route::get('/admin/blog/{blog}/show', [BlogController::class, 'show'])->name('blog.show'); 
     Route::get('/admin/blog/{blog}/edit', [BlogController::class, 'edit'])->name('blog.edit'); 
     Route::put('/admin/blog/{blog}/update', [BlogController::class,'update'])->name('blog.update');
-}); 
+// }); 
 
 
 // Auth

@@ -18,14 +18,14 @@ class ServiceController extends Controller
     return view('admin.services.index', compact('services', 'icones'));
     }
 
-    public function edit(Service $id)
+    public function edit(Service $service)
     {
         $this->authorize('webmaster', Auth::user());
         $icones = Icone::all();
-        $cards = $id;    
-        return view('admin.pages.home.card', compact('cards', 'icones')); 
+  
+        return view('admin.services.edit', compact('service', 'icones')); 
     }
-    public function update(Request $request, Service $id)
+    public function update(Request $request, Service $service)
     {
         $this->authorize('webmaster', Auth::user()); 
 
@@ -34,12 +34,12 @@ class ServiceController extends Controller
             "soustitre" => "required", 
             "description" => "required|max:200"
         ]);
-        $cards = $id;
+
         // $cards->titre = '';
-        $cards->icone_id  = $request->icone_id; 
-        $cards->soustitre = $request->soustitre; 
-        $cards->description = $request->description; 
-        $cards->save(); 
-        return redirect()->route('services.index', compact('cards'))->with('success', 'Cards modifié avec succès'); 
+        $service->icone_id  = $request->icone_id; 
+        $service->soustitre = $request->soustitre; 
+        $service->description = $request->description; 
+        $service->save(); 
+        return redirect()->route('services.index')->with('success', 'Cards modifié avec succès'); 
     }
 }

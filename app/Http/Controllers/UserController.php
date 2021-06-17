@@ -27,6 +27,7 @@ class UserController extends Controller
         $homes1 = Titre::all();
         $homes2 = Discover::all();
         $homes3 = Service::all();
+        
         return view('admin.user.main', compact('users', 'homes1', 'homes2', 'homes3'));
     }
 
@@ -138,7 +139,7 @@ class UserController extends Controller
         $user->poste_id = $request->poste_id;
         $user->save();
 
-        return redirect()->back()->with('success', 'Profil modifié');
+        return redirect()->route('user.index')->with('success', 'Profil modifié');
     }
 
 

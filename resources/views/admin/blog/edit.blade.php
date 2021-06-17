@@ -10,13 +10,13 @@
                         <div class="text-center md:text-left">
                             <img src="{{asset('img/' . $blog->image)}}" alt="" />
                             <div>
-                                <input type="file" name="image" />
+                                <input type="file" name="image">
                             </div>
                             <div class="my-4">
-                                <p class="font-bold">Titre
-                                    <input type="text" name="titre" value="{{$blog->titre}}"/>
-                                </p>
-                            </div>
+                                {{-- <p class="font-bold">Titre</p> --}}
+                                    {{-- <input type="text" name="titre" value="{{$blog->titre}}"/> --}}
+                                    {{-- <input type="text" name="titre" value="{{$blog->titre}}">
+                            </div> --}}
                             <div class="my-4">
                                 <p class="font-bold">Catégorie
                                     <select name="categorie_id" id="categorie_id">

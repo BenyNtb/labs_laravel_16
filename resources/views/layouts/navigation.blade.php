@@ -66,7 +66,7 @@
                                         <a class="text-gray-100 hover:text-black hover:font-bold"
                                             href="{{ route('video.index') }}">Video
                                     </li>
-                                     <li class="ml-14">
+                                    <li class="ml-14">
                                         <a class="text-gray-100 hover:text-black hover:font-bold"
                                             href="{{ route('titre.index') }}">Titres
                                     </li>
@@ -93,6 +93,21 @@
                         <div class="flex-auto my-1">
                             <a href="{{ route('service.index') }}">
                                 <span>Services</span>
+                            </a>
+                        
+                        </div>
+                    </div>
+                    <div class="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
+                        <div class="mr-4 my-auto">
+                            <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M21 3H3C2 3 1 4 1 5v14c0 1.1.9 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zM5 17l3.5-4.5 2.5 3.01L14.5 11l4.5 6H5z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="flex-auto my-1">
+                            <a href="{{ route('ready.index') }}">
+                                <span>Ready</span>
                             </a>
                         
                         </div>

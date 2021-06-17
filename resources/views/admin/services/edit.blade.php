@@ -9,7 +9,7 @@
                         @method('PUT')
                         @include('layouts.flash')
                         <div class="flex flex-col md:w-2/6">
-                            <i style="font-size:4rem;" class="{{$service->icone}}"></i>
+                            <i style="font-size:4rem;" class="{{$service->icone->class}}"></i>
                             <div class="flex justify-between">
                                 <label class="font-bold" for="icone">Icone </label>
                             </div> 

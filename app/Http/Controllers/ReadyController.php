@@ -76,10 +76,10 @@ class ReadyController extends Controller
         $this->authorize('webmaster', Auth::user()); 
         $request->validate([
             "titre" => "required",
-            "texte" => "required",
+            "description" => "required",
         ]);
         $ready->titre = $request->titre; 
-        $ready->texte = $request->texte;
+        $ready->description = $request->description;
         $ready->save(); 
 
         return redirect()->route('ready.index')->with('success', 'Modification effectuée'); 

@@ -120,7 +120,7 @@ class BlogController extends Controller
         
 
         $request->validate([
-            'titre'=>"required",
+            // 'titre'=>"required",
             'description'=>"required|min:20",
             "image" => "required",
             "categorie_id" => "required",
@@ -133,7 +133,7 @@ class BlogController extends Controller
             $blog->save();
         }
 
-        $blog->titre = $request->titre;
+        // $blog->titre = $request->titre;
         $blog->categorie_id = $request->categorie_id;
         $blog->description = $request->description;
         $blog->save();

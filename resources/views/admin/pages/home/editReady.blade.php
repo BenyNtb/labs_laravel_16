@@ -10,8 +10,8 @@
                         @include('layouts.flash')
                         <div class="mt-4 flex flex-col md:w-4/6">
                             <label class="font-bold" for="titre">Titre</label>
-                            <input class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" name="titre" id="desc" maxlength="200" cols="30" rows="10" style="resize:none;" type="text"/>{{$ready->titre}}
-                            <p class="text-right text-gray-400 strong"></p>
+                            <input class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" name="titre" id="desc" maxlength="200" cols="30" rows="10" style="resize:none;" type="text" value="{{$ready->titre}}">
+
                             @error('titre')
                                 <span class="text-red-500 font-bold">{{$message}}</span> 
                             @enderror
@@ -19,8 +19,8 @@
 
                         <div class="mt-4 flex flex-col md:w-4/6">
                             <label class="font-bold" for="texte">Texte</label>
-                            <input class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" name="texte" id="desc" maxlength="200" cols="30" rows="10" style="resize:none;" type="text"/>{{$ready->texte}}
-                            <p class="text-right text-gray-400 strong"></p>
+                            <input class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" name="description" id="desc" maxlength="200" cols="30" rows="10" style="resize:none;" type="text" value="{{$ready->description}}">
+
                             @error('texte')
                                 <span class="text-red-500 font-bold">{{$message}}</span> 
                             @enderror

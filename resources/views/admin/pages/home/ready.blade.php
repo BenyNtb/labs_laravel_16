@@ -18,7 +18,7 @@
                                         <p class="text-black">{{$item->titre}}</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="text-black">{{$item->texte}}</p>
+                                        <p class="text-black">{{$item->description}}</p>
                                     </div>
                                 </div>
                             </div>
