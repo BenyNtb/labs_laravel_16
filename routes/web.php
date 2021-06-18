@@ -46,12 +46,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AllController::class, 'home'])->name('home');
 Route::get('/services', [AllController::class, 'services'])->name('services');
 Route::get('/blog', [AllController::class, 'blog'])->name('blog');
-Route::get('/blog-post', [AllController::class, 'blogpost'])->name('blog-post');
+Route::get('/blog-post/{id}', [AllController::class, 'blogpost'])->name('blog-post');
 // Route::get('/blog/post/{id}', [AllController::class, 'showpost'])->name('blog.show');
 Route::get('/contact', [AllController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactSujetController::class, 'store'])->name('objet');
 // Search
 Route::get('/blog/search/', [AllController::class, 'search'])->name('blog.search');
+
+//Categorie
+Route::get('/blog/categorie/{id}', [AllController::class, 'categorie'])->name('categorie');
 
 // Mail 
 Route::post('/mail', [MailcontactController::class, 'store'])->name('mail');
@@ -116,33 +119,32 @@ Route::middleware(['auth'])->group(function () {
 
         // Blog
         // Route::resource('/admin/blog', BlogController::class);
-        
+
         // Route::get('/admin/blog', [BlogController::class, 'index'])->name('blog.index');
         // Route::get('/admin/blog/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
         // Route::put('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
-        
+
 
         // Validate
         Route::get('/admin/validate', [ValidateController::class, 'index'])->name('validate.index');
         // Valider un membre
         Route::put('/admin/validation/member/update/{id}', [ValidateController::class, 'updateUser'])->name('validateUserUpdate');
         // Supprimer un membre non-validé
-        Route::delete('/admin/validate/user/{id}/delete', [ValidateController::class,'deleteUser'])->name('validateDeleteUser');
+        Route::delete('/admin/validate/user/{id}/delete', [ValidateController::class, 'deleteUser'])->name('validateDeleteUser');
 
         // Article
         Route::put('/admin/validate/update/{id}', [ValidateController::class, 'updateArticle'])->name('validateUpdateArticle');
         // Article corbeille
-        Route::put('/admin/trash/article/{id}/', [TrashController::class,'trashArticle'])->name('trashArticle');
+        Route::put('/admin/trash/article/{id}/', [TrashController::class, 'trashArticle'])->name('trashArticle');
         // Recup article corbeille
-        Route::put('/admin/recup/article/{id}/', [TrashController::class,'recupArticle'])->name('recupArticle');
+        Route::put('/admin/recup/article/{id}/', [TrashController::class, 'recupArticle'])->name('recupArticle');
 
         // Commentaires
         Route::post('/blog/article/{id}/comment', [CommentaireController::class, "store"])->name('commentStore');
         // Validation  commentaire
         Route::put('/admin/validation/update/{id}', [CommentaireController::class, 'update'])->name('commentUpdate');
         // Supprimer un commentaire non-validé
-        Route::delete('/admin/validate/comment/{id}/delete', [ValidateController::class,'deleteComment'])->name('validateDeleteComment');
-
+        Route::delete('/admin/validate/comment/{id}/delete', [ValidateController::class, 'deleteComment'])->name('validateDeleteComment');
     });
     // Route::resource('/admin/user', UserController::class)->middleware('admin');
     Route::get('/admin/user', [UserController::class, 'index'])->name('user.index')->middleware('admin');
@@ -156,17 +158,17 @@ Route::put('admin/user/update/{user}', [UserController::class, 'updateMembre'])-
 // Admin - TRASH
 Route::get('/admin/trash', [TrashController::class, 'index'])->middleware(['webmaster'])->name('trash.index');
 // Supprimer un article de la corbeille définitivement
-Route::delete('/admin/trash/article/{id}/delete', [TrashController::class,'deleteArticle'])->name('deleteArticle');
+Route::delete('/admin/trash/article/{id}/delete', [TrashController::class, 'deleteArticle'])->name('deleteArticle');
 
 // CRUD Blog Redacteur
 // Route::middleware(['redacteur'])->group(function () {
-    Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('blog.create');
-    Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('blog.store');
-    Route::get('/admin/blog/index', [BlogController::class, 'index'])->name('blog.index');
-    Route::get('/admin/blog/{blog}/show', [BlogController::class, 'show'])->name('blog.show'); 
-    Route::get('/admin/blog/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit'); 
-    Route::put('/admin/blog/{id}/update', [BlogController::class,'update'])->name('blog.update');
-    Route::delete('/admin/blog/{id}/delete', [BlogController::class, 'destroy'])->name('blog.destroy');
+Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('blog.create');
+Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('blog.store');
+Route::get('/admin/blog/index', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/admin/blog/{blog}/show', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/admin/blog/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');
+Route::put('/admin/blog/{id}/update', [BlogController::class, 'update'])->name('blog.update');
+Route::delete('/admin/blog/{id}/delete', [BlogController::class, 'destroy'])->name('blog.destroy');
 // }); 
 
 

@@ -1,4 +1,6 @@
- <!-- page section -->
+@extends('layouts.index')
+@section('content')
+<!-- page section -->
 <div class="page-section spad">
     <div class="container">
         <div class="row">
@@ -19,46 +21,46 @@
                 <div class="single-post">
                     <div class="post-item">
                         <div class="post-thumbnail">
-                            <img src="{{ asset($id->image) }}" alt="{{ $id->titre }}">
+                            <img src="{{ asset($blog->image) }}" alt="{{ $blog->titre }}">
                             <div class="post-date">
-                                <h2>{{ $id->created_at->format('d') }} </h2>
-                                <h3>{{ $id->created_at->format('M') . ' ' . $id->created_at->format('Y') }}</h3>
+                                <h2>{{ $blog->created_at->format('d') }} </h2>
+                                <h3>{{ $blog->created_at->format('M') . ' ' . $blog->created_at->format('Y') }}</h3>
                             </div>
                         </div>
                         <div class="post-content">
-                            <h2 class="post-title">{{ $id->titre }}</h2>
+                            <h2 class="post-title">{{ $blog->titre }}</h2>
                             <div class="post-meta">
                                 <a
-                                    href="{{ route('blog.showcat', $id->categorie->nom) }}">{{ $id->categorie->nom }}</a>
+                                    href="{{ route('blog-post', $blog->categorie->nom) }}">{{ $blog->categorie->nom }}</a>
                                 <a href="">
-                                    @forelse ($id->tags as $tag)
+                                    @forelse ($blog->tags as $tag)
                                     <a style="all:unset;"
-                                        href="{{ route('blog.showtag', $tag->nom) }}">#{{ $tag->nom }}</a>
+                                        href="{{ route('blog-post', $tag->nom) }}">#{{ $tag->nom }}</a>
                                     @empty
                                     <span>No tag</span>
                                     @endforelse
                                 </a>
-                                <a href="">{{ count($id->commentaire) }} Comments</a>
+                                <a href="">{{ count($blog->commentaire) }} Comments</a>
                             </div>
-                            <p>{{ $id->description }} </p>
+                            <p>{{ $blog->description }} </p>
                         </div>
                     </div>
                     <!-- Post Author -->
                     <div class="author">
                         <div class="avatar">
-                            <img src="{{ asset($id->user->image) }}"
-                                alt="{{ $id->user->nom . ' ' . $id->user->prenom }}" style="max-height:117px;">
+                            <img src="{{ asset($blog->user->image) }}"
+                                alt="{{ $blog->user->nom . ' ' . $blog->user->prenom }}" style="max-height:117px;">
                         </div>
                         <div class="author-info">
-                            <h2>{{ $id->user->nom . ' ' . $id->user->prenom }}, <span>Author</span></h2>
-                            <p>{{ $id->user->description }} </p>
+                            <h2>{{ $blog->user->nom . ' ' . $blog->user->prenom }}, <span>Author</span></h2>
+                            <p>{{ $blog->user->description }} </p>
                         </div>
                     </div>
                     <!-- Post Comments -->
-                    <div class="comments">
-                        <h2>Comments ({{ count($id->commentaire) }})</h2>
+                    {{-- <div class="comments">
+                        <h2>Comments ({{ count($blog->commentaire) }})</h2>
                         <ul class="comment-list">
-                            @forelse ($id->commentaires as $commentaire)
+                            @forelse ($blog->commentaires as $commentaire)
                             @if ($loop->iteration >= 10) @break
                             @endif
 
@@ -77,9 +79,9 @@
                             @endforelse
 
                         </ul>
-                    </div>
+                    </div> --}}
                     <!-- Commert Form -->
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-md-9 comment-from">
                             <h2 id="leavecom">Leave a comment</h2>
                             <form class="form-class" method="POST" action="{{ route('blog.addcom', $id) }}">
@@ -103,7 +105,7 @@
                                     </div>
                                     <div class="col-sm-12">
                                         <textarea name="message" id="addcomment" placeholder="Message"
-                                            style="resize:none!important;">{{ old('message') }}</textarea>
+                                            style="resize:none!important;">{{ old('message') }}</textarea> --}}
 
                                         {{-- <p><span id="count"></span> / 200</p> --}}
 
@@ -168,21 +170,21 @@
                     <h2 class="widget-title">Categories</h2>
                     <ul>
                         {{-- Recherche par categorie --}}
-                        @forelse ($cats as $cat)
+                        {{-- @forelse ($cats as $cat)
                         <li><a href="{{ route('blog.showcat', $cat->nom) }}">{{ $cat->nom }}</a></li>
                         @if ($loop->iteration >= 7) @break
                         @endif
                         @empty
                         <p>No categorie</p>
-                        @endforelse
+                        @endforelse --}}
                     </ul>
                 </div>
                 <!-- Single widget -->
-                <div class="widget-item">
+                {{-- <div class="widget-item">
                     <h2 class="widget-title">Tags</h2>
-                    <ul class="tag">
+                    <ul class="tag"> --}}
                         {{-- Recherche par tag --}}
-                        @forelse ($tags as $tag)
+                        {{-- @forelse ($tags as $tag)
                         <li><a href="{{ route('blog.showtag', $tag->nom) }}">{{ $tag->nom }}</a></li>
                         @if ($loop->iteration >= 7)
                         @break
@@ -191,10 +193,11 @@
                         <p>No tags</p>
                         @endforelse
                     </ul>
-                </div>
+                </div> --}}
 
             </div>
         </div>
     </div>
 </div>
 <!-- page section end-->
+@endsection

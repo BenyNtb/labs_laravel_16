@@ -42,4 +42,9 @@ class ServiceController extends Controller
         $service->save(); 
         return redirect()->route('services.index')->with('success', 'Cards modifié avec succès'); 
     }
+    public function destroy(Service $service)
+    {
+        $service->delete();
+        return redirect()->back();
+    }
 }

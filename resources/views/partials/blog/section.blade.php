@@ -1,4 +1,7 @@
 <!-- page section -->
+@extends('layouts.index')
+@section('content')
+    
 <div class="page-section spad">
     <div class="container">
         <div class="row">
@@ -10,30 +13,27 @@
                     <div class="post-thumbnail">
                         <img src="{{asset('img/'. $post->image)}}" alt="">
                         <div class="post-date">
-                            <h2>03</h2>
-                            <h3>Nov 2017</h3>
+                            {{-- $date --}}
+                            <h2>{{$post->created_at->format('d')}}</h2>
+                            <h3>{{$post->created_at->format('M - y')}}</h3>
                         </div>
                     </div>
                     <div class="post-content">
                         <h2 class="post-title">{{$post->titre}}</h2>
-                        <div class="post-meta">
-                            <a href="">{{$post->categorie->nom}}</a>
-                            @if (count($post->tags) <= 0)
-                                <span class="text-secondary">
-                                    0 tags pour cet article. 
-                                </span>    
-                            @else
-                                @foreach ($post->tags as $tag)
+                                <div class="post-meta">
+                                    {{-- $categorie --}}
+                                    <a href="">{{$post->categorie->nom}}</a>
+                                    {{-- tags --}}
                                     <a href="">
-                                        <span class="text-primary">{{$tag->nom}}</span>
+                                        @foreach ($post->tags as $tag)
+                                        <span href="">{{$tag->nom}},</span>    
+                                        @endforeach
                                     </a>
-                                @endforeach
-                            @endif
-                            
-                            <a href="">{{count($post->commentaire)}} comments</a>
+                                    
+                                    <a href="">{{count($post->commentaire)}} comments</a>
+                                    <a href="{{route('blog-post', $post->id)}}" class="read-more">Read More</a>
                         </div>
                         <p>{{ Str::limit($post->description, 200, '...') }}</p>
-                        <a href="{{route('blog-post')}}" class="read-more">Read More</a>
                     </div>
                 </div>
                 
@@ -41,7 +41,7 @@
                 <!-- Pagination -->
                 @endforeach
                 <div class="page-pagination">
-                    {{$posts->links('vendor.pagination.simple-default')}}
+                    {{-- {{$posts->links('vendor.pagination.simple-default')}} --}}
                 </div>
             </div>
             <!-- Sidebar area -->
@@ -59,9 +59,9 @@
                     <h2 class="widget-title">Categories</h2>
                     <ul>
                         @foreach ($categories as $categorie)
-                            <li><a href="#">{{$categorie->nom}}</a></li>
-                        @endforeach
-                        
+                            <li><a href="{{route('categorie', $categorie->id)}}">{{$categorie->nom}}</a></li>
+                            @endforeach
+                            
                     </ul>
                 </div>
                 
@@ -70,12 +70,13 @@
                     <h2 class="widget-title">Tags</h2>
                     <ul class="tag">
                         @foreach ($tags as $tag)
-                            <li><a href="">{{$tag->nom}}</a></li>
+                        <li><a href="">{{$tag->nom}}</a></li>
                             @endforeach
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
             </div>
         </div>
     </div>
 </div>
 <!-- page section end-->
+@endsection

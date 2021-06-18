@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Blog;
 use App\Models\Carousel;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use App\Models\Contact;
 use App\Models\ContactSujet;
 use App\Models\Discover;
@@ -69,27 +70,71 @@ class AllController extends Controller
         return view('contact', compact('contacts', 'sujets'));
     }
     public function blog(){
-        $posts = Blog::paginate(3)->fragment('blogPaginate');
+        $posts = blog::orderByDesc('id')->where('validate',1)->paginate(3);
         $categories = Categorie::all();
         $tags = Tag::all();
         $sujets = ContactSujet::all();
         return view('blog', compact('categories', 'tags', 'posts', 'sujets'));
     }
-    public function blogpost(){
+    public function blogpost(Blog $id){
         $categories = Categorie::all();
-        $blog = Blog::all();
+        $blog = $id;
         $tags = Tag::all();
         return view('blog-post',  compact('categories', 'blog', 'tags'));
     }
-    public function search(Request $request){ 
-        if($request->has('x')){
-            $x = $request->x; 
-            $route = "search"; 
-            $cats  = Categorie::all();
-            $tags = Tag::all(); 
-            $results = Blog::where('titre', 'LIKE', "%" . $x . "%")->get();
-            return view('blogshow', compact('route', 'results', 'cats', 'tags','x'));
-        }
+    public function search(Request $request)
+    {
+        request()->validate([
+            "article" => "required",
+        ]);
+
+        $q = $request->article;
+        $articles = Article::where('titre', 'LIKE', "%{$q}%")->get();
+        // return dd($articles[0]->categorie->nom);
+
+        //sidebar
+        $categories = Categorie::all();
+        $tags = Tag::all();
+
+        $logo = Logo::all();
+        //header page
+        $url =  url()->current();
+
+        return view('partials.blog.selection', compact('articles', 'categories', 'tags','logo','url'));
+    }
+    public function categorie(Categorie $id)
+    {
+        // headerpage
+        $url =  url()->current();
+        //tags
+        $tags = Tag::all();
+        //categories
+        $categories = Categorie::all();
+
+        $ref = $id;
+        //selection categorie
+        $posts = Blog::where('categorie_id', $ref->id)->get();
+
+        //logo
+        $logo = Logo::all();
+
+        return view('partials.blog.section', compact('url','posts', 'categories', 'tags','logo') );
+    }
+    public function tag(Tag $id)
+    {
+        // headerpage
+        $url =  url()->current();
+        //tags
+        $tags = Tag::all();
+        //categories
+        $categories = Categorie::all();
+
+        $ref = $id;
+
+        //logo
+        $logo = Logo::all();
+
+        return view('pages.blog.section', compact('ref','url', 'urlCurrent', 'categories', 'tags', 'logo') );
     }
     // public function dashboard(){
     //     $users =  User::all();

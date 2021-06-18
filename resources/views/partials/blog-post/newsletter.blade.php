@@ -1,3 +1,5 @@
+@extends('layouts.index')
+@section('content')
 <!-- newsletter section -->
 <div class="newsletter-section spad">
     <div class="container">
@@ -16,3 +18,4 @@
     </div>
 </div>
 <!-- newsletter section end-->
+@endsection

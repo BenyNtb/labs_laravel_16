@@ -15,12 +15,12 @@
         @if (Route::has('login'))
                 <div class="">
                     @auth
-                        <a href="{{ route('dashboard') }}" class="">Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class=""></a>
                     @else
-                        <a href="{{ route('login') }}" class="">Log in</a>
+                        <a href="{{ route('login') }}" class=""></a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="">Register</a>
+                            <a href="{{ route('register') }}" class=""></a>
                         @endif
                     @endauth
                 </div>

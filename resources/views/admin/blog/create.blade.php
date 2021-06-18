@@ -1,9 +1,9 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h3 class="text-xl m-4 text-center md:text-left">Gestion du Blog :: Créer un article</h3>
+                    <h3 class="text-xl m-4 text-center md:text-left">Gestion du Blog : Créer un article</h3>
                         <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
                     <form method="POST" action="{{ route('blog.store') }}" enctype="multipart/form-data">
@@ -17,7 +17,10 @@
                         <!-- Text -->
                         <div class="mt-4">
                             <x-label for="description" :value="__('Description')" />
-                            <textarea name="description" id="description" class="block mt-1 w-full border-b border-gray-200 overflow-hidden shadow-sm sm:rounded-lg" rows="5" cols="60"></textarea>
+                            <div>
+                                <input type="text" name="description" id="description">
+                            </div>
+                            {{-- <textarea name="description" id="description" class="block mt-1 w-full border-b border-gray-200 overflow-hidden shadow-sm sm:rounded-lg" rows="5" cols="60"></textarea> --}}
                         </div>
                         <!-- Image -->
                         <div class="mt-4">
@@ -27,19 +30,19 @@
                         <!-- Category -->
                         <div class="mt-4">
                             <x-label for="categorie_id" :value="__('Categorie')" />
-                            <select id="categorie_id" class="block mt-1 w-full ml-1 border-b border-gray-200 overflow-hidden shadow-sm sm:rounded-lg" name="categorie_id" :value="old('category_id')">
+                            <select id="categorie_id" class="block mt-1 w-full ml-1 border-b border-gray-200 overflow-hidden shadow-sm sm:rounded-lg" name="categorie_id" :value="old('category_id')" style="margin-top: 0rem; margin-left: 0rem" >
                                 @foreach ($categories as $cat)
                                     <option value="{{$cat->id}}">{{$cat->nom}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <!-- Tags -->
-                        <div class="mt-4">
+                        <div class="mt-50">
                             @foreach ($tags as $tag)
                                 <div class="mt-2 ml-2">
                                     <span>
                                         <input type="checkbox" name="taglist[]" value="{{$tag->id}}" style="height: 25px; width: 25px" class="border-b border-gray-200 overflow-hidden shadow-sm sm:rounded-lg">
-                                        <label for="taglist[]" class="ml-1">{{$tag->name}}</label>
+                                        <label for="taglist[]" class="ml-1">{{$tag->nom}}</label>
                                     </span>
                                 </div>
                             @endforeach

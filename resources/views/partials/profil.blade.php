@@ -3,10 +3,10 @@
         <div class="w-full mx-2">
             <div
                 class="grid grid-cols-6 grid-rows-7 grid-flow-row  rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <div class="col-span-3 row-span-4 p-1 m-1">
+                {{-- <div class="col-span-3 row-span-4 p-1 m-1">
                     <img src="{{ asset(Auth::user()->img) }}" alt="photoprofil"
                         class="rounded-t-xl object-cover h-48 mx-auto imgProfil" />
-                </div>
+                </div> --}}
 
                 <div class="col-span-3 row-span-1">
                     <div class="flex align-bottom flex-col leading-none p-2 md:p-4">

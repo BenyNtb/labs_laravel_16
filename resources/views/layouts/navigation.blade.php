@@ -350,11 +350,5 @@
                 </form>
             </div>
         </header>
-
-        <div class="text-white bg-blue-400 flex flex-shrink-0 flex-col">
-            <div class="flex relative items-center p-4 h-12">
-                <span class="text-2xl tracking-wide">Users</span>
-            </div>
-        </div>
     </div>
 </div>
